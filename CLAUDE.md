@@ -158,7 +158,7 @@ RSS 소스 (config/sources.json)
 ## 미완성 / TODO
 
 1. ~~스티비 구독 폼 연결~~ — 완료 (2026-07-12), `web/index.html`에 이메일 + 산업 선택 필드 연결
-2. **privacy.html 빈칸** — 운영자 이름, 문의용 이메일 주소
+2. ~~privacy.html 빈칸~~ — 완료 (2026-07-12), 책임자 김유빈 / 문의 yubi2023@gmail.com
 3. **로봇신문 등 RSS 없는 소스** — `config/sources.json`에 `type: "site_crawl"`로 표시됨, 크롤러 미구현
 4. **cluster_id** — 같은 사건 중복 기사 묶기 미구현
 5. ~~호스팅~~ — 완료 (2026-07-12), `web/` 폴더가 GitHub Pages로 배포됨 (아래 "배포" 섹션 참고)
