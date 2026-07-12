@@ -75,7 +75,8 @@ def build_week(week_label: str, published_at: str):
                 "source": rec.get("source", ""),
                 "link": rec.get("link", ""),
                 "event_type": tagged.get("event_type"),
-                "sentiment": tagged.get("sentiment")
+                "sentiment": tagged.get("sentiment"),
+                "why_it_matters": tagged.get("why_it_matters")
             })
 
     return {

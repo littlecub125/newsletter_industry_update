@@ -86,6 +86,7 @@
     .news-item-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
     .news-title { font-size: 15px; font-weight: 700; }
     .news-summary { font-size: 14px; color: var(--text-muted); }
+    .news-why { font-size: 13px; color: var(--text); margin-top: 6px; padding: 6px 10px; background: var(--surface); border-radius: 6px; }
     .news-meta { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
     .meta-tag { font-size: 12px; color: var(--text-muted); background: var(--surface); padding: 2px 8px; border-radius: 6px; }
 
@@ -254,6 +255,7 @@
                 <span class="news-title">${it.title}</span>
               </div>
               <div class="news-summary">${it.summary}</div>
+              ${it.why_it_matters ? `<div class="news-why">💡 ${it.why_it_matters}</div>` : ""}
               <div class="news-meta">
                 <span class="meta-tag">${it.source}</span>
                 ${it.event_type ? `<span class="meta-tag">${it.event_type}</span>` : ""}

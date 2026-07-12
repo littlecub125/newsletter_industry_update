@@ -108,6 +108,9 @@ RSS 소스 (config/sources.json)
 | region | 국내 / 해외 국가명 |
 | impact_score | 1~5 (뉴스레터 노출 순위 결정에 사용) |
 | summary | 1~2문장 자체 요약 (**원문 인용 금지, 반드시 재서술**) |
+| why_it_matters | 취업준비생/현직자 관점에서 이 소식이 왜 중요한지 1~2문장. **이 기사 하나의
+  사실에만 근거** — 다른 기사나 배경지식을 끌어와 종합·추론하지 않는다(할루시네이션 방지,
+  사람 검수 부담을 지금 수준으로 유지). 확실하지 않으면 null |
 | reasoning | 태깅 근거 한 줄 (사람이 검수할 때 사용) |
 
 ### 아직 구현되지 않은 태그
@@ -128,7 +131,7 @@ RSS 소스 (config/sources.json)
   "items": [
     { "industry": "robot", "tier": "free|premium", "title": "...",
       "summary": "...", "source": "...", "link": "...",
-      "event_type": "...", "sentiment": "..." }
+      "event_type": "...", "sentiment": "...", "why_it_matters": "..." }
   ]
 }
 ```
@@ -164,7 +167,15 @@ RSS 소스 (config/sources.json)
 
 ### 저작권
 - 기사 원문을 그대로 옮기면 안 된다. `summary`는 **반드시 자체 재서술**.
-- RSS 콘텐츠 재배포는 언론사별 정책 확인이 필요할 수 있다 (config/sources.json의 legal_note_ko 참고).
+- **RSS 재배포는 매체별로 명시적 허가가 필요하다.** 2026-07-12 확인: 전자신문(etnews) 공식
+  FAQ에 "언론사 허락없이 온라인 뉴스레터를 배포할 수 없다"고 명시돼 있음. 그래서
+  `config/sources.json`의 각 소스는 `redistribution_allowed` 필드로 재배포 허가 여부를
+  표시하고, `scrape_rss.py`는 이 필드가 `true`인 소스만 수집한다. **새 소스를 추가할 때
+  이 필드를 반드시 명시할 것** — 확인 안 됐으면 기본값은 `false`. 지금은 뉴스와이어
+  (newswire.co.kr, 기업 보도자료 배포 서비스)를 10개 산업 전체에 사용 중이며, 재배포 시
+  "뉴스와이어" 크레딧 + 출처 기업명 표시가 조건이고 **하루 5건 이상 대량 이용 시 별도 허락이
+  필요**(아직 미획득 — 발행량을 계속 확인할 것). 자세한 내용/연락처는 `config/sources.json`의
+  `legal_note_ko` 참고.
 
 ### 개인정보
 - 이메일 수집 시 개인정보처리방침 필수 (privacy.html에 작성됨, 운영자 이름·문의 이메일 미기입 상태).
@@ -187,6 +198,11 @@ RSS 소스 (config/sources.json)
    개인/기업)과 다중 산업 선택(프리미엄)은 아직 없음. `build_newsletter.py`는 그때까지 운영자가
    `--industries`/`--companies`를 직접 지정하는 방식으로 운영한다. `SERVICE_DESIGN.md` 5번
    항목 참고.
+8. ~~재배포 허용 소스 채워넣기~~ — 완료 (2026-07-12). etnews는 재배포 불허로 확인돼 전부
+   비활성화, 대신 뉴스와이어(newswire.co.kr) — 기업이 보도자료를 배포하려고 올리는 서비스 —
+   RSS로 10개 산업 전부 전환. 재배포 시 "뉴스와이어" 크레딧 + 출처 기업명 표시 필요,
+   **하루 5건 이상 대량 이용 시 뉴스와이어 별도 허락 필요**(아직 안 받음, 발행량 계속
+   모니터링할 것). 자세한 내용은 `config/sources.json`의 `legal_note_ko`와 `TODO.md` 참고.
 
 ## 실행 방법
 

@@ -62,6 +62,7 @@ def build_prompt(article: dict, industries: dict, event_types: dict) -> str:
   "region": "국내 또는 해외 국가명",
   "impact_score": 1부터 5 사이 정수,
   "summary": "1~2문장 자체 요약 (원문 문장을 그대로 베끼지 말고 반드시 자신의 말로 재작성)",
+  "why_it_matters": "이 산업의 취업준비생/현직자 입장에서 이 소식이 왜 중요한지 1~2문장",
   "reasoning": "이렇게 태깅한 근거를 한 줄로"
 }}
 
@@ -69,6 +70,10 @@ def build_prompt(article: dict, industries: dict, event_types: dict) -> str:
 - industries, event_type, sentiment, scope는 위에 제시된 목록에 없는 값을 만들어내지 마세요.
 - 확실하지 않은 필드는 null로 표기하세요.
 - summary는 절대 원문을 그대로 인용하지 말고 완전히 재서술하세요.
+- why_it_matters는 반드시 이 기사 하나에 나온 사실에만 근거하세요. 다른 기사나 배경지식을
+  끌어와 종합·추론하지 말고, 이 기사가 취업준비생의 취업 준비 방향이나 현직자의 업무에
+  어떤 의미가 있는지만 짧게 짚으세요. 확실하지 않으면 무리해서 만들어내지 말고 null로
+  표기하세요.
 """
     return prompt
 

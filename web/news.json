@@ -1,18 +1,725 @@
 {
   "_comment": "매주 발행 시 weeks 배열 맨 앞에 새 주차를 추가하세요. tier: 'free'는 무료(산업별 상위 3개), 'premium'은 프리미엄 전용 추가 뉴스. industry는 industries.json의 id를 사용.",
   "industries": [
-    { "id": "robot", "label": "로봇" },
-    { "id": "embedded_iot", "label": "임베디드/IoT" },
-    { "id": "semiconductor", "label": "반도체" },
-    { "id": "automation_factory", "label": "자동화/스마트팩토리" },
-    { "id": "mobility", "label": "모빌리티/자율주행" },
-    { "id": "battery_energy", "label": "배터리/에너지" },
-    { "id": "biotech", "label": "바이오/헬스테크" },
-    { "id": "fintech", "label": "핀테크" },
-    { "id": "ai_software", "label": "AI/소프트웨어" },
-    { "id": "ecommerce_platform", "label": "이커머스/플랫폼" }
+    {
+      "id": "robot",
+      "label": "로봇"
+    },
+    {
+      "id": "embedded_iot",
+      "label": "임베디드/IoT"
+    },
+    {
+      "id": "semiconductor",
+      "label": "반도체"
+    },
+    {
+      "id": "automation_factory",
+      "label": "자동화/스마트팩토리"
+    },
+    {
+      "id": "mobility",
+      "label": "모빌리티/자율주행"
+    },
+    {
+      "id": "battery_energy",
+      "label": "배터리/에너지"
+    },
+    {
+      "id": "biotech",
+      "label": "바이오/헬스테크"
+    },
+    {
+      "id": "fintech",
+      "label": "핀테크"
+    },
+    {
+      "id": "ai_software",
+      "label": "AI/소프트웨어"
+    },
+    {
+      "id": "ecommerce_platform",
+      "label": "이커머스/플랫폼"
+    }
   ],
   "weeks": [
+    {
+      "week_label": "2026년 7월 2주",
+      "published_at": "2026-07-12",
+      "items": [
+        {
+          "industry": "robot",
+          "tier": "free",
+          "title": "삼성, 미래 성장 위해 영남에 60조원 투자 계획",
+          "summary": "삼성이 영남 지역을 글로벌 피지컬 AI 혁신 거점으로 육성하기 위해 60조원 규모의 대규모 투자 계획을 공식 발표했으며, 휴머노이드 로봇을 포함한 제조 AI 분야가 핵심 추진 방향으로 제시됐다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037956&sourceType=rss",
+          "event_type": "투자/자금조달",
+          "sentiment": "긍정",
+          "why_it_matters": "삼성의 60조원 투자 계획은 휴머노이드 로봇 및 제조 AI 분야의 대규모 인력 수요로 이어질 수 있어, 해당 분야 취업준비생에게는 유망한 진로 방향을 시사하며 현직자에게는 관련 기술 역량 강화의 중요성을 환기시킨다."
+        },
+        {
+          "industry": "robot",
+          "tier": "free",
+          "title": "Robbyant Launches LingBot-VA 2.0 Built Natively for Embodied AI and Physical World Control",
+          "summary": "앤트그룹 산하 로봇 AI 기업 Robbyant가 물리적 환경 제어에 특화된 업계 최초의 구현형 AI 기반 비디오-액션 월드 모델 LingBot-VA 2.0을 공개했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038389&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "로봇 SW/플랫폼 분야 취업을 준비하는 이들에게 'embodied-native' 월드 모델이라는 새로운 기술 방향성이 제시된 만큼, 해당 기술 스택과 개념을 학습 목표에 포함시킬 필요가 있다."
+        },
+        {
+          "industry": "robot",
+          "tier": "free",
+          "title": "UMA Unveils Its Vision for the Next Generation of Humanoid Robots",
+          "summary": "UMA가 Machina Summit에서 자사 첫 휴머노이드 로봇 디자인을 공개하고, 데모를 통해 로봇이 새로운 기술을 실시간으로 습득할 수 있는 학습 아키텍처 'Real-Time Learning'을 발표했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038241&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "휴머노이드 로봇과 실시간 학습 기술의 결합은 로봇 SW 및 AI 분야 취업준비생에게 주목해야 할 핵심 기술 트렌드를 제시하며, 현직자에게는 Physical AI 기반 로봇 학습 아키텍처 설계 역량의 중요성을 상기시킨다."
+        },
+        {
+          "industry": "robot",
+          "tier": "premium",
+          "title": "Robbyant Upgrades and Open-Sources LingBot-VLA 2.0 as a Next-Generation Universal Brain for Embodied AI",
+          "summary": "앤트그룹 산하 로봇 AI 기업 Robbyant가 구현 AI용 차세대 범용 모델인 LingBot-VLA 2.0을 업그레이드하고 오픈소스로 공개했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038211&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "VLA 기반 구현 AI 모델의 오픈소스 공개는 로봇 SW 및 AI 플랫폼 분야 취업준비생에게 직접 학습·활용 가능한 실습 자료가 생겼음을 의미하며, 현직자에게는 해당 기술 스택의 실무 적용 가능성을 검토할 기회가 된다."
+        },
+        {
+          "industry": "robot",
+          "tier": "premium",
+          "title": "Robbyant Unveils LingBot-World 2.0: Pioneering Hour-Long Real-Time Generation in World Models",
+          "summary": "앤트그룹 산하 구현형 AI 기업 Robbyant가 최대 1시간 분량의 실시간 세계 예측 생성이 가능한 인터랙티브 월드 모델 LingBot-World 2.0을 오픈소스로 공개했다.",
+          "source": "뉴스와이어 - 소프트웨어",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038307&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "로봇 SW 및 AI 분야 취업준비생이라면 오픈소스로 공개된 월드 모델 기술을 직접 학습하고 포트폴리오에 활용할 수 있는 기회가 생겼으며, 현직자에게는 장기 시뮬레이션 기반 로봇 학습 연구의 새로운 레퍼런스가 될 수 있다."
+        },
+        {
+          "industry": "robot",
+          "tier": "premium",
+          "title": "Booster Robotics 휴머노이드 로봇, RoboCup 2026 전 부문 우승 휩쓸어",
+          "summary": "Booster Robotics의 휴머노이드 로봇을 활용한 팀들이 RoboCup 2026 소형·중형·대형 세 개 부문을 모두 석권하며 기술력을 국제적으로 입증했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038408&sourceType=rss",
+          "event_type": "R&D/연구성과",
+          "sentiment": "긍정",
+          "why_it_matters": "휴머노이드 로봇 분야에서 Booster Robotics의 플랫폼이 다양한 크기 부문에서 경쟁력을 인정받은 만큼, 해당 기업과 유사한 기술 스택을 보유한 취업준비생이나 현직자에게 주목할 만한 레퍼런스가 될 수 있다."
+        },
+        {
+          "industry": "robot",
+          "tier": "premium",
+          "title": "UMA, 차세대 휴머노이드 로봇 비전 공개",
+          "summary": "프랑스 피지컬 AI 스타트업 UMA가 마키나 서밋에서 첫 휴머노이드 로봇 디자인을 선보이며, 수동 프로그래밍 없이 시연만으로 로봇이 기술을 습득하는 새로운 학습 아키텍처를 공개했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038242&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "시연 기반 학습 아키텍처는 로봇 SW 개발 및 AI 학습 설계 분야의 새로운 기술 방향을 제시하므로, 관련 직무를 준비하는 취업준비생이나 현직자에게 주목할 만한 기술 트렌드다."
+        },
+        {
+          "industry": "robot",
+          "tier": "premium",
+          "title": "휴머노이드 서밋, 서울 에디션 개최하며 글로벌 확장 이어가",
+          "summary": "글로벌 휴머노이드 로봇·피지컬 AI 전문 컨퍼런스 '휴머노이드 서밋'이 2026년 9월 서울 코엑스에서 처음으로 한국 행사를 개최하며 아시아 시장으로 영역을 넓힌다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037983&sourceType=rss",
+          "event_type": "기타",
+          "sentiment": "긍정",
+          "why_it_matters": "휴머노이드 로봇 분야 취업을 준비하는 사람이라면 이번 서울 행사를 통해 글로벌 산업 트렌드와 주요 플레이어를 한자리에서 접할 수 있는 네트워킹 기회로 활용할 수 있다."
+        },
+        {
+          "industry": "robot",
+          "tier": "premium",
+          "title": "Striding AI, 피지컬 AI 현장 배치를 위한 차세대 로봇 파운데이션 시스템 개발",
+          "summary": "중국 AI 스타트업 Striding AI가 로봇이 실제 환경에서 인식·추론·행동할 수 있도록 지원하는 차세대 로봇 파운데이션 시스템 개발 계획을 공식 발표했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037882&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "로봇 SW/플랫폼 분야의 취업준비생과 현직자 입장에서 피지컬 AI 기반 파운데이션 시스템이 새로운 기술 방향으로 부상하고 있음을 보여주는 사례로, 해당 기술 스택에 대한 이해와 준비가 중요해질 수 있다."
+        },
+        {
+          "industry": "robot",
+          "tier": "premium",
+          "title": "에버미디어·리얼센스, ‘오토메이트 2026’서 멀티 카메라 인지 기술 공개",
+          "summary": "에버미디어와 리얼센스가 파트너십을 맺고 미국 오토메이트 2026 전시회에서 로봇·자동화 분야를 위한 멀티 카메라 기반 깊이 감지 및 AI 인지 기술을 공동으로 선보였다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037865&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "로봇 및 자동화 분야에서 멀티 카메라·AI 퍼셉션 기술의 중요성이 부각되고 있어, 관련 직군 취업 준비생은 깊이 감지 및 비전 기술 역량을 갖추는 것이 경쟁력이 될 수 있다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "free",
+          "title": "삼성, 미래 성장 위해 영남에 60조원 투자 계획",
+          "summary": "삼성이 영남 지역을 글로벌 피지컬 AI 혁신 거점으로 육성하기 위해 60조원 규모의 대규모 투자 계획을 공식 발표했으며, 휴머노이드 로봇을 포함한 제조 AI 분야가 핵심 추진 방향으로 제시됐다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037956&sourceType=rss",
+          "event_type": "투자/자금조달",
+          "sentiment": "긍정",
+          "why_it_matters": "삼성의 60조원 투자 계획은 휴머노이드 로봇 및 제조 AI 분야의 대규모 인력 수요로 이어질 수 있어, 해당 분야 취업준비생에게는 유망한 진로 방향을 시사하며 현직자에게는 관련 기술 역량 강화의 중요성을 환기시킨다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "free",
+          "title": "Robbyant Launches LingBot-VA 2.0 Built Natively for Embodied AI and Physical World Control",
+          "summary": "앤트그룹 산하 로봇 AI 기업 Robbyant가 물리적 환경 제어에 특화된 업계 최초의 구현형 AI 기반 비디오-액션 월드 모델 LingBot-VA 2.0을 공개했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038389&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "로봇 SW/플랫폼 분야 취업을 준비하는 이들에게 'embodied-native' 월드 모델이라는 새로운 기술 방향성이 제시된 만큼, 해당 기술 스택과 개념을 학습 목표에 포함시킬 필요가 있다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "free",
+          "title": "UMA Unveils Its Vision for the Next Generation of Humanoid Robots",
+          "summary": "UMA가 Machina Summit에서 자사 첫 휴머노이드 로봇 디자인을 공개하고, 데모를 통해 로봇이 새로운 기술을 실시간으로 습득할 수 있는 학습 아키텍처 'Real-Time Learning'을 발표했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038241&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "휴머노이드 로봇과 실시간 학습 기술의 결합은 로봇 SW 및 AI 분야 취업준비생에게 주목해야 할 핵심 기술 트렌드를 제시하며, 현직자에게는 Physical AI 기반 로봇 학습 아키텍처 설계 역량의 중요성을 상기시킨다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "premium",
+          "title": "Robbyant Upgrades and Open-Sources LingBot-VLA 2.0 as a Next-Generation Universal Brain for Embodied AI",
+          "summary": "앤트그룹 산하 로봇 AI 기업 Robbyant가 구현 AI용 차세대 범용 모델인 LingBot-VLA 2.0을 업그레이드하고 오픈소스로 공개했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038211&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "VLA 기반 구현 AI 모델의 오픈소스 공개는 로봇 SW 및 AI 플랫폼 분야 취업준비생에게 직접 학습·활용 가능한 실습 자료가 생겼음을 의미하며, 현직자에게는 해당 기술 스택의 실무 적용 가능성을 검토할 기회가 된다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "premium",
+          "title": "Ollama Raises $65M Series B Funding to Grow its Open-source AI Platform",
+          "summary": "오픈소스 AI 모델 개발자 플랫폼인 Ollama가 Theory Ventures 주도로 6,500만 달러 규모의 시리즈 B 투자를 유치하며 플랫폼 성장을 가속화할 계획을 밝혔다.",
+          "source": "뉴스와이어 - 소프트웨어",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038327&sourceType=rss",
+          "event_type": "투자/자금조달",
+          "sentiment": "긍정",
+          "why_it_matters": "오픈소스 AI 플랫폼에 대한 대규모 투자는 관련 분야 개발자 채용 수요 확대로 이어질 수 있어, AI 인프라 및 개발자 도구 분야 취업을 준비 중인 사람들에게 유망한 진입 시점임을 시사한다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "premium",
+          "title": "Robbyant Unveils LingBot-World 2.0: Pioneering Hour-Long Real-Time Generation in World Models",
+          "summary": "앤트그룹 산하 구현형 AI 기업 Robbyant가 최대 1시간 분량의 실시간 세계 예측 생성이 가능한 인터랙티브 월드 모델 LingBot-World 2.0을 오픈소스로 공개했다.",
+          "source": "뉴스와이어 - 소프트웨어",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038307&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "로봇 SW 및 AI 분야 취업준비생이라면 오픈소스로 공개된 월드 모델 기술을 직접 학습하고 포트폴리오에 활용할 수 있는 기회가 생겼으며, 현직자에게는 장기 시뮬레이션 기반 로봇 학습 연구의 새로운 레퍼런스가 될 수 있다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "premium",
+          "title": "테트라멤과 SK하이닉스, 메모리 중심 AI 컴퓨팅 발전 위한 기술 협력 성과 공개",
+          "summary": "테트라멤과 SK하이닉스가 아날로그 인메모리 컴퓨팅 기술을 기반으로 한 공동 기술 협력 결과물을 공개하며, AI 컴퓨팅 효율화를 위한 메모리 중심 연산 분야에서의 협업 성과를 발표했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038250&sourceType=rss",
+          "event_type": "R&D/연구성과",
+          "sentiment": "긍정",
+          "why_it_matters": "메모리 기반 AI 연산이라는 차세대 기술 방향이 SK하이닉스와 같은 대형 기업의 공식 협력으로 구체화된 만큼, 반도체 및 AI 하드웨어 분야 취업준비생은 A-IMC 같은 뉴로모픽·인메모리 컴퓨팅 기술을 핵심 학습 키워드로 주목할 필요가 있다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "premium",
+          "title": "TetraMem and SK hynix Showcase Successful Technology Collaboration Advancing Memory-Centric AI Computing",
+          "summary": "TetraMem과 SK하이닉스가 아날로그 인메모리 컴퓨팅 기술을 기반으로 한 AI 컴퓨팅 혁신을 위한 기술 협력 성과를 공동 발표했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038247&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "메모리 중심 AI 컴퓨팅이라는 신흥 분야에서 글로벌 협력 사례가 나온 만큼, 반도체 및 AI 하드웨어 분야 취업준비생은 A-IMC 같은 차세대 메모리 기술 트렌드를 파악해 두는 것이 유리하다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "premium",
+          "title": "삼성전자, AI 인프라에 최적화된  기업용 SSD ‘PM1763’ 양산",
+          "summary": "삼성전자가 PCIe 6.0 인터페이스를 기반으로 AI 인프라 환경에 맞춰 설계된 기업용 SSD 신제품 PM1763의 양산을 개시했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038123&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "AI 서버·데이터센터용 스토리지 수요가 커지는 상황에서 삼성전자가 차세대 인터페이스 규격의 eSSD를 양산 단계로 끌어올린 만큼, 메모리·스토리지 관련 직무를 준비하는 취업준비생은 PCIe 6.0 및 AI 인프라 스토리지 트렌드를 핵심 기술 키워드로 숙지할 필요가 있다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "premium",
+          "title": "UMA, 차세대 휴머노이드 로봇 비전 공개",
+          "summary": "프랑스 피지컬 AI 스타트업 UMA가 마키나 서밋에서 첫 휴머노이드 로봇 디자인을 선보이며, 수동 프로그래밍 없이 시연만으로 로봇이 기술을 습득하는 새로운 학습 아키텍처를 공개했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038242&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "시연 기반 학습 아키텍처는 로봇 SW 개발 및 AI 학습 설계 분야의 새로운 기술 방향을 제시하므로, 관련 직무를 준비하는 취업준비생이나 현직자에게 주목할 만한 기술 트렌드다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "free",
+          "title": "삼성, 미래 성장 위해 영남에 60조원 투자 계획",
+          "summary": "삼성이 영남 지역을 글로벌 피지컬 AI 혁신 거점으로 육성하기 위해 60조원 규모의 대규모 투자 계획을 공식 발표했으며, 휴머노이드 로봇을 포함한 제조 AI 분야가 핵심 추진 방향으로 제시됐다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037956&sourceType=rss",
+          "event_type": "투자/자금조달",
+          "sentiment": "긍정",
+          "why_it_matters": "삼성의 60조원 투자 계획은 휴머노이드 로봇 및 제조 AI 분야의 대규모 인력 수요로 이어질 수 있어, 해당 분야 취업준비생에게는 유망한 진로 방향을 시사하며 현직자에게는 관련 기술 역량 강화의 중요성을 환기시킨다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "free",
+          "title": "에버미디어·리얼센스, ‘오토메이트 2026’서 멀티 카메라 인지 기술 공개",
+          "summary": "에버미디어와 리얼센스가 파트너십을 맺고 미국 오토메이트 2026 전시회에서 로봇·자동화 분야를 위한 멀티 카메라 기반 깊이 감지 및 AI 인지 기술을 공동으로 선보였다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037865&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "로봇 및 자동화 분야에서 멀티 카메라·AI 퍼셉션 기술의 중요성이 부각되고 있어, 관련 직군 취업 준비생은 깊이 감지 및 비전 기술 역량을 갖추는 것이 경쟁력이 될 수 있다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "free",
+          "title": "한국공학대학교 Grand-ICT 연구센터 참여기업 져스텍, 코스닥 상장 쾌거",
+          "summary": "초정밀 모션제어 전문기업 져스텍이 코스닥 시장에 신규 상장하며 상장 첫날 공모가 대비 세 배 이상의 주가를 기록하는 성과를 거뒀다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037698&sourceType=rss",
+          "event_type": "투자/자금조달",
+          "sentiment": "긍정",
+          "why_it_matters": "모션제어 분야 기업이 코스닥 상장에 성공함으로써 해당 기술 분야의 시장 가치가 인정받았음을 보여주며, 관련 직무를 준비하는 취업준비생에게 이 분야가 성장 가능성 있는 커리어 경로임을 시사한다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "premium",
+          "title": "In Line With the LEAP | 28 Portfolio Rotation Strategy, Bureau Veritas Signs an Agreement to Sell Its Oil & Petrochemicals and Coal Testing and Inspection Business",
+          "summary": "글로벌 검사·인증 기업 Bureau Veritas가 LEAP 28 포트폴리오 재편 전략의 일환으로 석유·석유화학 및 석탄 분야 검사·시험 사업부를 Triton Partners에 매각하기 위한 독점 협상에 착수했다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037652&sourceType=rss",
+          "event_type": "인수합병(M&A)",
+          "sentiment": "중립",
+          "why_it_matters": "TIC(검사·시험·인증) 분야에서 에너지 관련 사업부 매각이 이루어지므로, 해당 분야 취업준비생은 기업의 포트폴리오 전략 변화에 따라 특정 직무나 사업부의 채용 규모가 달라질 수 있음을 인지해야 한다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "premium",
+          "title": "로크웰 오토메이션 사업장, 세계경제포럼 ‘글로벌 라이트하우스’로 선정",
+          "summary": "로크웰 오토메이션의 싱가포르 제조 시설이 세계경제포럼이 운영하는 글로벌 라이트하우스 네트워크에 선정되며 첨단 제조 역량을 국제적으로 인정받았다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037316&sourceType=rss",
+          "event_type": "R&D/연구성과",
+          "sentiment": "긍정",
+          "why_it_matters": "글로벌 라이트하우스는 스마트팩토리 분야의 국제적 벤치마크로, 이 분야 취업을 준비하는 이들에게 로크웰 오토메이션이 디지털 전환 기술력을 갖춘 주요 기업임을 확인하는 지표가 된다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "premium",
+          "title": "Rockwell Automation Site Named a World Economic Forum Global Lighthouse",
+          "summary": "Rockwell Automation의 싱가포르 제조시설이 세계경제포럼(WEF)이 선정하는 '글로벌 등대공장'에 이름을 올리며 첨단 제조 역량을 국제적으로 인정받았다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037315&sourceType=rss",
+          "event_type": "기타",
+          "sentiment": "긍정",
+          "why_it_matters": "산업 자동화 및 스마트팩토리 분야 취업준비생이나 현직자 입장에서, Rockwell Automation이 글로벌 등대공장으로 선정됨은 해당 기업의 디지털 전환 기술력이 세계 최고 수준임을 의미하므로 관련 직군의 기술 방향성과 역량 기준을 파악하는 데 참고할 수 있다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "premium",
+          "title": "현대자동차 울산공장-SICK코리아, 미래 제조 환경 안전 혁신 위한 업무협약 체결",
+          "summary": "SICK코리아와 현대자동차 울산공장이 차세대 제조 현장의 안전성 강화를 목표로 첨단 안전 기술 협력에 관한 MOU를 공식 체결했다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1036985&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "자동화·스마트팩토리 분야 취업준비생 및 현직자에게 산업용 센서와 안전 솔루션이 대형 완성차 제조 현장에 실질적으로 적용되고 있음을 보여주는 사례로, 관련 기술 역량과 자격의 중요성을 확인할 수 있다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "premium",
+          "title": "모넷코리아, 스마트 팩토리 진동 예지보전 무선 센서 솔루션 출시… 센서 다는 날이 곧 인공지능 학습 시작일",
+          "summary": "모넷코리아가 AI 기반 예지보전 기능을 탑재한 산업용 무선 3축 진동 센서 솔루션을 출시했으며, 설치 즉시 AI 학습이 시작되는 것이 특징이다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1034990&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "스마트팩토리 및 산업용 IoT 분야 취업준비생이라면 AI 예지보전 솔루션의 실제 적용 사례로 참고할 수 있으며, 현직자에게는 설비 유지보수 자동화를 위한 새로운 솔루션 도입 검토 시 유용한 정보가 된다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "premium",
+          "title": "제올, 레이저 SEM 시스템 ‘라즈엣지’ 판매 개시",
+          "summary": "일본 제올이 레이저 가공 기능을 내장한 주사전자현미경 신제품 '라즈엣지'를 개발하여 2026년 5월부터 상업 판매에 돌입했다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1035440&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "반도체 및 소부장 분야 취업준비생이라면 SEM·FIB 등 전자빔 분석 장비 트렌드를 파악하는 데 참고할 수 있으며, 현직자에게는 레이저 가공과 전자현미경을 복합한 새로운 장비 카테고리가 등장했음을 인지하는 계기가 된다."
+        },
+        {
+          "industry": "automation_factory",
+          "tier": "premium",
+          "title": "하비스탕스 GriPalm, 씨메스로보틱스 팔레타이징 자동화에서 협동로봇 가반하중 문제 해결",
+          "summary": "하비스탕스의 맞춤형 진공 그리퍼 제품 GriPalm이 씨메스로보틱스의 팔레타이징 자동화 현장에 적용되어 협동로봇의 가반하중 한계를 극복하는 사례로 소개되었다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037763&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "협동로봇 기반 팔레타이징 자동화가 현장에서 직면하는 가반하중 문제를 그리퍼 솔루션으로 해결한 실제 사례로, 로봇 엔드이펙터 및 자동화 설비 분야 취업준비생과 현직자에게 실무 적용 방향에 대한 참고점을 제공한다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "free",
+          "title": "삼성전자, 2026년 2분기 잠정 실적 발표",
+          "summary": "삼성전자가 2026년 2분기 매출 171조원, 영업이익 89.4조원을 기록하며 전년 동기 대비 영업이익이 약 1810% 급증하는 역대급 실적을 달성했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038044&sourceType=rss",
+          "event_type": "실적발표",
+          "sentiment": "긍정",
+          "why_it_matters": "삼성전자의 반도체 부문 영업이익이 전년 대비 1800% 이상 폭증한 만큼, 반도체 산업 내 채용 확대 및 투자 증가 가능성이 높아져 취업준비생과 현직자 모두에게 긍정적인 업황 신호로 볼 수 있다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "free",
+          "title": "테트라멤과 SK하이닉스, 메모리 중심 AI 컴퓨팅 발전 위한 기술 협력 성과 공개",
+          "summary": "테트라멤과 SK하이닉스가 아날로그 인메모리 컴퓨팅 기술을 기반으로 한 공동 기술 협력 결과물을 공개하며, AI 컴퓨팅 효율화를 위한 메모리 중심 연산 분야에서의 협업 성과를 발표했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038250&sourceType=rss",
+          "event_type": "R&D/연구성과",
+          "sentiment": "긍정",
+          "why_it_matters": "메모리 기반 AI 연산이라는 차세대 기술 방향이 SK하이닉스와 같은 대형 기업의 공식 협력으로 구체화된 만큼, 반도체 및 AI 하드웨어 분야 취업준비생은 A-IMC 같은 뉴로모픽·인메모리 컴퓨팅 기술을 핵심 학습 키워드로 주목할 필요가 있다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "free",
+          "title": "TetraMem and SK hynix Showcase Successful Technology Collaboration Advancing Memory-Centric AI Computing",
+          "summary": "TetraMem과 SK하이닉스가 아날로그 인메모리 컴퓨팅 기술을 기반으로 한 AI 컴퓨팅 혁신을 위한 기술 협력 성과를 공동 발표했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038247&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "메모리 중심 AI 컴퓨팅이라는 신흥 분야에서 글로벌 협력 사례가 나온 만큼, 반도체 및 AI 하드웨어 분야 취업준비생은 A-IMC 같은 차세대 메모리 기술 트렌드를 파악해 두는 것이 유리하다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "premium",
+          "title": "삼성전자, AI 인프라에 최적화된  기업용 SSD ‘PM1763’ 양산",
+          "summary": "삼성전자가 PCIe 6.0 인터페이스를 기반으로 AI 인프라 환경에 맞춰 설계된 기업용 SSD 신제품 PM1763의 양산을 개시했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038123&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "AI 서버·데이터센터용 스토리지 수요가 커지는 상황에서 삼성전자가 차세대 인터페이스 규격의 eSSD를 양산 단계로 끌어올린 만큼, 메모리·스토리지 관련 직무를 준비하는 취업준비생은 PCIe 6.0 및 AI 인프라 스토리지 트렌드를 핵심 기술 키워드로 숙지할 필요가 있다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "premium",
+          "title": "키오시아와 샌디스크, 기타카미 공장 Fab2에서 10세대 3D 플래시 메모리 제품 생산 개시",
+          "summary": "키오시아와 샌디스크가 일본 이와테현 기타카미 공장 Fab2에서 10세대 3D 낸드 플래시 메모리 양산을 공식 시작했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037978&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "최신 세대 3D 낸드 생산이 본격화됨에 따라 메모리 반도체 설계·공정 직군의 기술 요구 수준이 높아질 수 있으며, 관련 분야 취업을 준비하는 이들은 최신 3D 낸드 기술 동향을 파악해 두는 것이 도움이 된다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "premium",
+          "title": "Kioxia and Sandisk Begin Production of 10th-Generation 3D Flash Memory Products at Kitakami Plant Fab2",
+          "summary": "Kioxia와 Sandisk가 일본 기타카미 공장 Fab2에서 10세대 3D 낸드플래시 메모리 제품의 양산을 공식 개시했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037977&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "낸드플래시 메모리 분야의 최신 세대 제품 양산이 시작된 만큼, 반도체 메모리 공정 및 장비 관련 직군에서의 기술 동향 파악에 직접적으로 도움이 된다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "premium",
+          "title": "QpiAI Open-Sources Its Quantum SDK to Accelerate Global Quantum Software Development",
+          "summary": "인도 기반 풀스택 양자컴퓨팅 기업 QpiAI가 자사의 양자 소프트웨어 개발 키트(SDK)를 오픈소스로 공개하여 전 세계 개발자와 연구자들이 자유롭게 활용할 수 있도록 했다.",
+          "source": "뉴스와이어 - 소프트웨어",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038239&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "양자컴퓨팅 분야 취업을 준비하는 개발자라면 이번 SDK 공개를 통해 실제 양자 소프트웨어 개발 경험을 무료로 쌓을 수 있는 기회가 생겼으며, 현직자들도 새로운 툴체인을 검토할 필요가 있다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "premium",
+          "title": "Defiance, 유럽 최초 포토닉스 UCITS ETF 출시",
+          "summary": "Defiance ETFs가 유럽 최초로 포토닉스 기술 기업에 투자하는 ETF(PHOT)를 출시하며, 빛을 활용한 데이터 처리·전송 분야에 대한 기관 및 개인 투자자의 접근 경로를 열었다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038407&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "포토닉스 분야를 전문으로 다루는 ETF가 유럽에 처음 등장했다는 것은 해당 기술 섹터의 투자 관심도가 높아지고 있음을 보여주므로, 광학 반도체 관련 직군을 준비하는 취업준비생이나 현직자에게 산업 성장 가능성을 가늠하는 참고 지표가 될 수 있다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "premium",
+          "title": "LG화학, 미국 앰코에 반도체용 스트리퍼 공급 반도체 소재 사업 확대 본격화",
+          "summary": "LG화학이 반도체 후공정 전문기업 앰코에 반도체용 스트리퍼를 양산 공급하며 반도체 소재 분야로 사업 영역을 처음 확장했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037980&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "LG화학이 반도체 소재 사업에 본격 진입함에 따라 소부장 분야 취업을 준비 중인 구직자에게 새로운 진출 기회가 생겼으며, 현직자에게는 화학 기업의 반도체 소재 공급망 내 역할 확대라는 시장 변화를 파악할 필요가 있음을 시사한다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "premium",
+          "title": "베리실리콘, 체화 로보틱스 및 모바일 비전 애플리케이션용 CPP2000 카메라 후처리 IP 출시",
+          "summary": "베리실리콘이 로보틱스 및 모바일 비전 시장을 겨냥한 고성능 카메라 후처리 IP인 CPP2000을 출시하며, 기존 ISP 솔루션의 기능 범위를 확장했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037975&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "카메라 후처리 IP는 로봇 비전 및 모바일 영상처리 분야의 핵심 기술로, 반도체 팹리스 및 로봇 하드웨어 직군 취업준비생이라면 ISP·CPP 관련 IP 설계 트렌드를 파악하는 데 참고할 수 있다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "free",
+          "title": "Access Advance, 새로운 라이선스 사용권자들의 HEVC Advance 특허 풀 대거 합류 환영",
+          "summary": "Access Advance LLC가 2026년 상반기에 가전·자동차·통신·산업 등 다양한 분야의 28개 기업과 HEVC Advance 특허 풀 라이선스 계약을 새롭게 체결하며 풀 규모를 크게 확장했다.",
+          "source": "뉴스와이어 - 소프트웨어",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038204&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "HEVC 특허 라이선스 풀 확대는 영상 코덱 기술을 활용하는 가전·자동차·통신 등 폭넓은 산업에서 지식재산권 컴플라이언스가 중요해지고 있음을 보여주므로, 관련 분야 취업준비생은 특허 라이선싱 이슈를 기본 소양으로 인지할 필요가 있다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "free",
+          "title": "마이크로소프트, 시스벨 Wi-Fi 멀티모드 특허 풀 라이선스 체결",
+          "summary": "마이크로소프트가 시스벨의 Wi-Fi 멀티모드 특허 풀에 참여해 관련 표준 필수 특허에 대한 정식 라이선스를 확보했다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037897&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "Wi-Fi 관련 표준 필수 특허 라이선스 계약은 기술 기업들이 제품·서비스에 무선 통신 기술을 적법하게 활용하기 위한 필수 절차이므로, 통신·특허 분야에 관심 있는 취업준비생이라면 IP 라이선싱 구조를 이해하는 데 참고할 수 있다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "free",
+          "title": "Microsoft Takes Sisvel Wi-Fi Multimode Patent Pool Licence",
+          "summary": "마이크로소프트가 Sisvel의 Wi-Fi 멀티모드 특허 풀에 라이선시로 합류하며, Wi-Fi 표준필수특허에 대한 사용 허가 계약을 체결했다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037895&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "Wi-Fi 관련 표준필수특허 라이선싱 시장에서 대형 기업들이 잇따라 계약을 맺는 흐름은, 통신 표준 및 지식재산권(IP) 분야에 관심 있는 취업준비생이나 현직자에게 특허 풀 비즈니스 모델과 SEP 라이선싱 구조를 이해하는 데 실질적인 사례가 된다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "premium",
+          "title": "Mavenir, 도이치텔레콤 ‘올해의 파트너상’ 네트워크 혁신 부문 수상",
+          "summary": "클라우드 네이티브·AI 기반 모바일 네트워크 소프트웨어 기업 Mavenir가 도이치텔레콤으로부터 네트워크 혁신 분야 올해의 파트너상을 수상하며 기술 협력 성과를 인정받았다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037478&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "통신 네트워크 소프트웨어 및 AI 인프라 분야 취업을 준비하는 이들에게 Mavenir 같은 클라우드 네이티브 네트워크 기업이 글로벌 통신사와 협력하며 성장하고 있음을 보여주는 사례로, 관련 직군의 실질적인 시장 수요를 확인할 수 있다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "premium",
+          "title": "모넷코리아, 스마트 팩토리 진동 예지보전 무선 센서 솔루션 출시… 센서 다는 날이 곧 인공지능 학습 시작일",
+          "summary": "모넷코리아가 AI 기반 예지보전 기능을 탑재한 산업용 무선 3축 진동 센서 솔루션을 출시했으며, 설치 즉시 AI 학습이 시작되는 것이 특징이다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1034990&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "스마트팩토리 및 산업용 IoT 분야 취업준비생이라면 AI 예지보전 솔루션의 실제 적용 사례로 참고할 수 있으며, 현직자에게는 설비 유지보수 자동화를 위한 새로운 솔루션 도입 검토 시 유용한 정보가 된다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "premium",
+          "title": "세연테크, 5.4TOPS AI IP 카메라 모듈 ‘FW1172-E8M’ 출시",
+          "summary": "세연테크가 최대 5.4TOPS의 AI 연산 성능을 갖춘 산업용 AI IP 카메라 모듈 'FW1172-E8M'을 출시하며, 장기 안정성 테스트와 국가 중요시설 적용 인증까지 완료한 것으로 알려졌다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038202&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "AI 카메라 모듈 등 엣지 AI 하드웨어 분야에 관심 있는 취업준비생이라면 고성능 NPU 탑재 임베디드 카메라 모듈의 실제 제품화 사례를 참고할 수 있으며, 현직자에게는 국가 중요시설 인증 등 공공 보안 시장 진입 요건을 파악하는 데 도움이 된다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "premium",
+          "title": "아이씨스템, KT 기업인터넷 가입센터 전국 광역시로 확대… 비대면 가입·현지 개통 지원",
+          "summary": "KT 공식 파트너사 아이씨스템이 운영하는 기업인터넷 가입센터의 서비스 지역을 기존 수도권에서 부산·대구·대전·광주·울산·세종 등 전국 광역시로 넓혀, 비대면 가입 및 현지 개통 지원을 전국 단위로 제공하게 됐다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037907&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "기업 통신 서비스의 전국 확대는 해당 분야 영업·개통 인력 수요 증가로 이어질 수 있어, 통신 파트너 채널 업무에 관심 있는 취업준비생에게 직접적인 채용 기회 신호가 될 수 있다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "premium",
+          "title": "한국공학대학교 Grand-ICT 연구센터 채승호 교수 연구팀, 한국통신학회 우수 논문상 수상",
+          "summary": "한국공학대학교 Grand-ICT 연구센터 채승호 교수팀 소속 대학원생이 2026년 한국통신학회 하계종합학술발표회에서 우수 논문상을 수상하며 연구 성과를 인정받았다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037874&sourceType=rss",
+          "event_type": "R&D/연구성과",
+          "sentiment": "긍정",
+          "why_it_matters": "ICT·통신 분야 취업을 준비하는 학생이라면 해당 연구센터의 연구 방향과 수상 논문 주제를 참고해 관련 역량을 쌓는 데 활용할 수 있다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "premium",
+          "title": "Hytera Debuts SC700 Smart 4G Body Camera at CCW 2026",
+          "summary": "하이테라가 CCW 2026 전시회에서 공공 안전 운영을 위한 스마트 4G 바디 카메라 신제품 SC700을 공식 출시했다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037693&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "공공 안전 분야의 4G 기반 웨어러블 통신 기기 시장이 확장되고 있음을 보여주므로, 임베디드·IoT 및 통신 모듈 관련 직무를 준비하는 취업준비생이나 현직자에게 해당 영역의 제품 트렌드를 파악하는 데 참고가 될 수 있다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "premium",
+          "title": "SUTEL, 테크노트리 플랫폼 도입… 코스타리카의 모바일 선불 가입자 등록 시스템 현대화 및 디지털 보안·신뢰 강화",
+          "summary": "코스타리카 통신감독청 SUTEL이 핀란드 통신 솔루션 기업 테크노트리의 플랫폼을 채택해 모바일 선불 가입자 등록 시스템을 디지털 방식으로 전환하고 보안을 강화한다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037495&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "통신 SW 플랫폼이 공공 규제 기관에 납품되는 사례로, 관련 분야 취업을 준비 중인 사람이라면 B2G 형태의 통신 솔루션 수주 구조와 디지털 신원 인증 기술 수요를 파악하는 데 참고할 수 있다."
+        },
+        {
+          "industry": "ecommerce_platform",
+          "tier": "free",
+          "title": "서플러스글로벌, AI 기반 수출통제 자동화 기술 특허 등록… 반도체 장비·부품 거래 안전성 강화",
+          "summary": "서플러스글로벌이 자사 반도체 장비·부품 거래 플랫폼 세미마켓에 적용된 AI 기반 수출통제 자동화 및 거래 리스크 관리 기술에 대한 국내 특허를 획득했다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1035558&sourceType=rss",
+          "event_type": "R&D/연구성과",
+          "sentiment": "긍정",
+          "why_it_matters": "반도체 장비·부품 거래 플랫폼에 AI 기반 수출통제 자동화 기술이 특허로 등록됨에 따라, 해당 분야 취업준비생은 AI와 무역 컴플라이언스가 결합된 기술 역량이 새로운 직무 역량으로 부상하고 있음을 인지할 필요가 있다."
+        },
+        {
+          "industry": "ecommerce_platform",
+          "tier": "free",
+          "title": "Holafly for Business 최신 보고서, ‘비즈니스 여행객들은 어디를 가든 사무실을 함께 지니고 가는 셈’",
+          "summary": "Holafly의 기업 대상 서비스 부문이 발간한 보고서에 따르면, 현대 출장 환경은 공항과 호텔 로비가 업무 공간으로 전환되는 등 기존 출장 개념과 완전히 달라졌으며, 출장 중에도 업무 연속성이 요구되는 시대가 됐다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038318&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "비즈니스 여행 및 기업 모빌리티 서비스 분야에 관심 있는 취업준비생이라면, 출장 중 업무 연속성을 지원하는 B2B 솔루션 수요가 커지고 있음을 참고해 관련 직무 준비 방향을 설정할 수 있다."
+        },
+        {
+          "industry": "ecommerce_platform",
+          "tier": "free",
+          "title": "올라플라이 ‘비즈니스 여행의 새 지형도’ 발표… 올여름 직장인들이 선택한 국가 순위",
+          "summary": "올라플라이가 올여름 직장인들의 비즈니스 여행 목적지 트렌드를 분석한 보고서를 발표하며, 금융 중심지 외에 생활·여가 매력을 갖춘 지역으로 출장 수요가 확대되고 있음을 밝혔다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037382&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": null
+        },
+        {
+          "industry": "mobility",
+          "tier": "free",
+          "title": "현대자동차 울산공장-SICK코리아, 미래 제조 환경 안전 혁신 위한 업무협약 체결",
+          "summary": "SICK코리아와 현대자동차 울산공장이 차세대 제조 현장의 안전성 강화를 목표로 첨단 안전 기술 협력에 관한 MOU를 공식 체결했다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1036985&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "자동화·스마트팩토리 분야 취업준비생 및 현직자에게 산업용 센서와 안전 솔루션이 대형 완성차 제조 현장에 실질적으로 적용되고 있음을 보여주는 사례로, 관련 기술 역량과 자격의 중요성을 확인할 수 있다."
+        },
+        {
+          "industry": "mobility",
+          "tier": "free",
+          "title": "설치 의무는 생겼는데 사업자는 없다… 플러그링크, 전기차 충전 사각지대 해소 나선다",
+          "summary": "전기차 충전시설 의무 설치 유예기간이 끝났음에도 사업성 부족으로 충전사업자를 구하지 못하는 공동주택이 속출하는 가운데, 플러그링크가 해당 사각지대 해소를 위한 서비스에 나섰다.",
+          "source": "뉴스와이어 - 자동차",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038286&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "혼조",
+          "why_it_matters": "충전인프라 보급 공백이라는 실질적 시장 문제가 부각되고 있어, 관련 분야 취업준비생은 수익 모델 설계 및 소외 지역 인프라 확장 역량이 중요한 직무 역량임을 파악할 수 있다."
+        },
+        {
+          "industry": "mobility",
+          "tier": "free",
+          "title": "ICS Korea ‘Automotive Innovation Day 2026’ 참가… 10BASE-T1S 환경의 DoIP·DDS/RTPS·Zenoh-Pico 통신 시연 및 Edge AI 데이터 로거 신제품 공개",
+          "summary": "ICS Korea가 2026년 7월 AID 2026 전시회에서 차세대 차량 네트워크 표준인 10BASE-T1S 기반의 통신 솔루션 시연과 Edge AI 데이터 로거 신제품을 공개할 예정이다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037457&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "차량용 이더넷 및 Edge AI 기술이 주목받는 시점에서, 관련 분야 취업 준비생이나 현직자는 10BASE-T1S·DoIP·DDS 등 차세대 차량 네트워크 표준의 실제 구현 사례를 통해 기술 트렌드를 파악하는 데 참고할 수 있다."
+        },
+        {
+          "industry": "mobility",
+          "tier": "premium",
+          "title": "아트라스콥코 코리아, 자동차 차체 공정 혁신 위한 고객 초청 행사 개최",
+          "summary": "아트라스콥코 코리아가 자동차 차체 공정 혁신을 주제로 3일간 고객 초청 이벤트를 개최하며 관련 기술과 솔루션을 선보였다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1036737&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "자동차 차체 공정 자동화 분야에 관심 있는 취업준비생이라면 아트라스콥코 같은 글로벌 제조설비 기업이 국내에서 어떤 기술 방향을 제시하는지 참고할 수 있다."
+        },
+        {
+          "industry": "fintech",
+          "tier": "free",
+          "title": "Defiance, 유럽 최초 포토닉스 UCITS ETF 출시",
+          "summary": "Defiance ETFs가 유럽 최초로 포토닉스 기술 기업에 투자하는 ETF(PHOT)를 출시하며, 빛을 활용한 데이터 처리·전송 분야에 대한 기관 및 개인 투자자의 접근 경로를 열었다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038407&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "포토닉스 분야를 전문으로 다루는 ETF가 유럽에 처음 등장했다는 것은 해당 기술 섹터의 투자 관심도가 높아지고 있음을 보여주므로, 광학 반도체 관련 직군을 준비하는 취업준비생이나 현직자에게 산업 성장 가능성을 가늠하는 참고 지표가 될 수 있다."
+        },
+        {
+          "industry": "biotech",
+          "tier": "free",
+          "title": "대봉엘에스, 글로벌 GMP 지원사업 선정… 제약용 아미노산 앞세워 미국 진출 가속화",
+          "summary": "대봉엘에스가 한국보건산업진흥원의 2026년 의약품 생산시설 글로벌 GMP 인증 규제지원 사업에 선정되어 제약용 아미노산을 앞세운 미국 시장 진출을 본격화하게 됐다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037705&sourceType=rss",
+          "event_type": "규제/정책",
+          "sentiment": "긍정",
+          "why_it_matters": "바이오·제약 소재 분야 취업준비생이나 현직자라면 글로벌 GMP 인증 지원사업이 해외 시장 진출의 실질적 경로가 될 수 있음을 이 사례를 통해 확인할 수 있으며, 관련 규제 대응 및 인증 역량이 실무에서 중요하게 활용됨을 알 수 있다."
+        },
+        {
+          "industry": "biotech",
+          "tier": "free",
+          "title": "엠엠피이엔지 ‘K-MED EXPO VIETNAM 2026’ 참가… 베트남 의료기기 시장 진출 확대",
+          "summary": "엠엠피이엔지가 베트남 호찌민에서 개최된 한국 의료기기 전시회에 참가해 마그네틱 교반기를 선보이며 베트남 시장 진출을 모색했다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1036684&sourceType=rss",
+          "event_type": "파트너십/수주",
+          "sentiment": "긍정",
+          "why_it_matters": "의료기기 분야 취업준비생이나 현직자에게 국내 기업이 베트남 등 동남아 시장으로 판로를 확대하는 흐름을 확인할 수 있어, 해외 영업·전시 관련 직무 기회를 탐색하는 데 참고가 될 수 있다."
+        },
+        {
+          "industry": "battery_energy",
+          "tier": "free",
+          "title": "설치 의무는 생겼는데 사업자는 없다… 플러그링크, 전기차 충전 사각지대 해소 나선다",
+          "summary": "전기차 충전시설 의무 설치 유예기간이 끝났음에도 사업성 부족으로 충전사업자를 구하지 못하는 공동주택이 속출하는 가운데, 플러그링크가 해당 사각지대 해소를 위한 서비스에 나섰다.",
+          "source": "뉴스와이어 - 자동차",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038286&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "혼조",
+          "why_it_matters": "충전인프라 보급 공백이라는 실질적 시장 문제가 부각되고 있어, 관련 분야 취업준비생은 수익 모델 설계 및 소외 지역 인프라 확장 역량이 중요한 직무 역량임을 파악할 수 있다."
+        }
+      ]
+    },
     {
       "week_label": "2026년 7월 1주",
       "published_at": "2026-07-06",

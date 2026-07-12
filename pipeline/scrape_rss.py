@@ -120,6 +120,9 @@ def collect_articles_for_industry(industry_id: str, sources_config: dict) -> lis
         if source.get("type") != "rss":
             print(f"[SKIP] {source['name']}: RSS 아님 (type={source.get('type')}), 별도 크롤러 필요")
             continue
+        if not source.get("redistribution_allowed"):
+            print(f"[SKIP] {source['name']}: 재배포 허가 미확인 (redistribution_allowed=false), 수집 제외")
+            continue
 
         try:
             xml_text = fetch_rss(source["url"])

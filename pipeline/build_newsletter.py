@@ -22,6 +22,7 @@
 import argparse
 import html
 import os
+import sys
 
 from config_loader import DATA_DIR, load_company_aliases, load_industries, load_tagged_articles, load_tiers
 from ranking import filter_by_company, get_tier, select_items_for_tier
@@ -50,9 +51,11 @@ def render_article(rec: dict) -> str:
     summary = html.escape(tagged.get("summary", ""))
     source = html.escape(rec.get("source", ""))
     link = html.escape(rec.get("link", ""))
+    why_it_matters = tagged.get("why_it_matters")
+    why_html = f'\n      <p class="why-it-matters">💡 {html.escape(why_it_matters)}</p>' if why_it_matters else ""
     return f"""    <div class="article">
       <h3><a href="{link}">{title}</a></h3>
-      <p class="summary">{summary}</p>
+      <p class="summary">{summary}</p>{why_html}
       <p class="meta">출처: {source}</p>
       <p class="comment-placeholder">[[ 운영자 코멘트를 여기에 추가하세요 ]]</p>
     </div>"""
@@ -128,6 +131,10 @@ def build_newsletter_html(tier_id: str, week_label: str, industries: list, compa
 
 
 def main():
+    # Windows 콘솔(cp949)은 이모지(⚠️/💡)를 못 그려서 print()가 UnicodeEncodeError로 죽는다.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--tier", required=True,
                          help="config/tiers.json의 티어 id (free/premium/vip_individual/vip_business)")
