@@ -16,6 +16,3 @@ venv/
 
 # Claude Code 개인 설정 (공유 불필요)
 .claude/settings.local.json
-
-# 인스타그램 포스팅용 스크린샷/캡션 초안 (마케팅 산출물, 소스코드 아님)
-instagram_posts/
