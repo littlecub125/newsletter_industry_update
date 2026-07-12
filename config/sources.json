@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "note": "etnews(전자신문) RSS는 실제 확인된 주소. 그 외 전문지는 RSS 주소 미확인 상태이므로 사이트 크롤링 방식 검토 필요. RSS 저작권 유의사항 하단 참고.",
+  "sources": {
+    "robot": [
+      { "name": "전자신문 - 로봇/SW 관련", "type": "rss", "url": "http://rss.etnews.com/04.xml", "verified": true },
+      { "name": "로봇신문", "type": "site_crawl", "url": "https://www.irobotnews.com", "verified": false, "note": "RSS 미확인, 크롤링 검토" },
+      { "name": "한국로봇산업진흥원 공지", "type": "site_crawl", "url": "https://www.kiria.org", "verified": false }
+    ],
+    "embedded_iot": [
+      { "name": "전자신문 - IT", "type": "rss", "url": "http://rss.etnews.com/03.xml", "verified": true },
+      { "name": "전자신문 - SW", "type": "rss", "url": "http://rss.etnews.com/04043.xml", "verified": true },
+      { "name": "전자신문 - 통신", "type": "rss", "url": "http://rss.etnews.com/03033.xml", "verified": true }
+    ],
+    "semiconductor": [
+      { "name": "전자신문 - 전자(반도체 포함)", "type": "rss", "url": "http://rss.etnews.com/06.xml", "verified": true },
+      { "name": "전자신문 - 부품", "type": "rss", "url": "http://rss.etnews.com/06062.xml", "verified": true },
+      { "name": "전자신문 - 장비", "type": "rss", "url": "http://rss.etnews.com/06061.xml", "verified": true },
+      { "name": "전자신문 - 소재", "type": "rss", "url": "http://rss.etnews.com/06064.xml", "verified": true }
+    ],
+    "automation_factory": [
+      { "name": "전자신문 - 중공업", "type": "rss", "url": "http://rss.etnews.com/06065.xml", "verified": true }
+    ],
+    "mobility": [
+      { "name": "전자신문 - 모빌리티", "type": "rss", "url": "http://rss.etnews.com/17.xml", "verified": true }
+    ],
+    "battery_energy": [
+      { "name": "전자신문 - 과학", "type": "rss", "url": "http://rss.etnews.com/20.xml", "verified": true, "note": "배터리 관련 기사는 과학/전자 섹션에 혼재, 태깅 단계에서 필터링 필요" }
+    ],
+    "biotech": [
+      { "name": "전자신문 - 바이오", "type": "rss", "url": "http://rss.etnews.com/20042.xml", "verified": true }
+    ],
+    "fintech": [
+      { "name": "전자신문 - 금융", "type": "rss", "url": "http://rss.etnews.com/02027.xml", "verified": true }
+    ],
+    "ai_software": [
+      { "name": "전자신문 - AI", "type": "rss", "url": "http://rss.etnews.com/04046.xml", "verified": true },
+      { "name": "전자신문 - SW", "type": "rss", "url": "http://rss.etnews.com/04043.xml", "verified": true }
+    ],
+    "ecommerce_platform": [
+      { "name": "전자신문 - 플랫폼", "type": "rss", "url": "http://rss.etnews.com/60028.xml", "verified": true },
+      { "name": "전자신문 - 유통", "type": "rss", "url": "http://rss.etnews.com/60068.xml", "verified": true }
+    ]
+  },
+  "legal_note_ko": "언론사 RSS는 원칙적으로 개인적 구독/열람 목적으로 제공되며, RSS 콘텐츠를 재가공해 제3자에게 재배포(뉴스레터 발행 등)하는 행위는 별도로 저작권자의 허락이 필요할 수 있습니다. 실제 서비스화 전에 원문을 그대로 옮기지 않고 반드시 자체 요약/재서술로 변환하고, 필요 시 언론사별 제휴/인용 정책을 확인하는 것을 권장합니다."
+}

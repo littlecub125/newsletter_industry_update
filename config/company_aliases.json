@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "notes_ko": "LLM 태깅이 같은 회사를 다르게 표기하는 문제를 보완하는 별칭 사전 (SERVICE_DESIGN.md 8번 항목). lookup_company.py/build_newsletter.py의 회사 검색이 부분일치로도 놓칠 때 여기에 표기를 추가한다. 아직 실사용 데이터가 없어 잘 알려진 대기업 몇 곳만 예시로 채워뒀다 — 운영하면서 놓치는 회사가 나오면 계속 추가할 것.",
+  "aliases": {
+    "삼성전자": ["Samsung Electronics", "삼성전자㈜", "삼성전자(주)"],
+    "LG전자": ["LG Electronics", "LG전자㈜"],
+    "네이버": ["NAVER", "네이버㈜"],
+    "카카오": ["Kakao", "카카오㈜"],
+    "현대자동차": ["현대차", "Hyundai Motor", "Hyundai"],
+    "SK하이닉스": ["SK Hynix"]
+  }
+}

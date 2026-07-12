@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-07-12",
+  "notes_ko": "이 파일은 티어별 '한도'만 정의한다. 구독자가 실제로 어떤 산업/회사를 골랐는지 저장하는 방식(스티비 커스텀필드 vs 자체 저장소)은 아직 결정하지 않았다 — TODO (SERVICE_DESIGN.md 참고). 당분간 build_newsletter.py 실행 시 운영자가 --industries/--companies로 직접 지정하는 방식으로 운영한다.",
+  "tiers": [
+    {
+      "id": "free",
+      "label_ko": "무료",
+      "max_industries": 1,
+      "max_companies": 0,
+      "news_count_per_industry": 3,
+      "has_ads": true,
+      "status": "open",
+      "web_visibility": "public"
+    },
+    {
+      "id": "premium",
+      "label_ko": "프리미엄",
+      "max_industries": 5,
+      "max_companies": 0,
+      "news_count_per_industry": 10,
+      "has_ads": false,
+      "status": "soon",
+      "web_visibility": "locked_preview"
+    },
+    {
+      "id": "vip_individual",
+      "label_ko": "VIP 개인",
+      "max_industries": 5,
+      "max_companies": 3,
+      "news_count_per_industry": 10,
+      "has_ads": false,
+      "status": "prep",
+      "web_visibility": "none",
+      "company_digest": true
+    },
+    {
+      "id": "vip_business",
+      "label_ko": "VIP 기업",
+      "max_industries": 10,
+      "max_companies": 10,
+      "news_count_per_industry": 10,
+      "has_ads": false,
+      "status": "prep",
+      "web_visibility": "none",
+      "company_digest": true
+    }
+  ]
+}

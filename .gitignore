@@ -1,0 +1,18 @@
+# 실행 시 생성되는 데이터
+data/
+
+# 환경변수 / 비밀키 (절대 커밋 금지)
+.env
+*.key
+
+# 파이썬
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# OS
+.DS_Store
+
+# Claude Code 개인 설정 (공유 불필요)
+.claude/settings.local.json

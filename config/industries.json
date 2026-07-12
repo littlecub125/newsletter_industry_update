@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-07-06",
+  "industries": [
+    {
+      "id": "robot",
+      "label_ko": "로봇",
+      "subcategories": [
+        "산업용/제조로봇",
+        "협동로봇",
+        "서비스로봇",
+        "AMR/자율이동로봇",
+        "휴머노이드",
+        "로봇 부품/디바이스",
+        "로봇 SW/플랫폼"
+      ]
+    },
+    {
+      "id": "embedded_iot",
+      "label_ko": "임베디드/IoT",
+      "subcategories": [
+        "임베디드 SW/펌웨어",
+        "산업용 IoT",
+        "웨어러블",
+        "스마트홈",
+        "통신모듈(LTE/5G/BLE)"
+      ]
+    },
+    {
+      "id": "semiconductor",
+      "label_ko": "반도체",
+      "subcategories": [
+        "시스템반도체/팹리스",
+        "메모리",
+        "파운드리",
+        "소부장(소재·부품·장비)",
+        "AI반도체/NPU"
+      ]
+    },
+    {
+      "id": "automation_factory",
+      "label_ko": "자동화/스마트팩토리",
+      "subcategories": [
+        "제조 자동화 설비",
+        "산업용 제어시스템(PLC 등)",
+        "스마트팩토리 솔루션",
+        "품질검사/비전시스템"
+      ]
+    },
+    {
+      "id": "mobility",
+      "label_ko": "모빌리티/자율주행",
+      "subcategories": [
+        "자율주행 SW/센서",
+        "전기차 부품",
+        "라이다/레이더",
+        "UAM/드론"
+      ]
+    },
+    {
+      "id": "battery_energy",
+      "label_ko": "배터리/에너지",
+      "subcategories": [
+        "이차전지 셀/소재",
+        "ESS",
+        "신재생에너지",
+        "충전인프라"
+      ]
+    },
+    {
+      "id": "biotech",
+      "label_ko": "바이오/헬스테크",
+      "subcategories": [
+        "제약/신약개발",
+        "의료기기",
+        "디지털헬스",
+        "바이오소재"
+      ]
+    },
+    {
+      "id": "fintech",
+      "label_ko": "핀테크",
+      "subcategories": [
+        "결제/송금",
+        "가상자산",
+        "인슈어테크",
+        "자산관리"
+      ]
+    },
+    {
+      "id": "ai_software",
+      "label_ko": "AI/소프트웨어",
+      "subcategories": [
+        "생성형AI/LLM",
+        "AI 인프라",
+        "SaaS",
+        "개발자 도구"
+      ]
+    },
+    {
+      "id": "ecommerce_platform",
+      "label_ko": "이커머스/플랫폼",
+      "subcategories": [
+        "온라인 커머스",
+        "물류/풀필먼트",
+        "O2O 서비스"
+      ]
+    }
+  ]
+}

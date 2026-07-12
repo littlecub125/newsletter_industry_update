@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "event_types": [
+    { "id": "funding", "label_ko": "투자/자금조달" },
+    { "id": "ma", "label_ko": "인수합병(M&A)" },
+    { "id": "product_launch", "label_ko": "제품출시/기술발표" },
+    { "id": "regulation", "label_ko": "규제/정책" },
+    { "id": "personnel", "label_ko": "인사이동" },
+    { "id": "earnings", "label_ko": "실적발표" },
+    { "id": "controversy", "label_ko": "사고/논란" },
+    { "id": "partnership", "label_ko": "파트너십/수주" },
+    { "id": "hiring_trend", "label_ko": "채용동향(정성적)" },
+    { "id": "rnd", "label_ko": "R&D/연구성과" },
+    { "id": "other", "label_ko": "기타" }
+  ],
+  "sentiment_values": ["긍정", "부정", "중립", "혼조"],
+  "scope_values": ["특정기업", "산업전반", "정책/규제"]
+}

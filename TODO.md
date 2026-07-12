@@ -1,0 +1,71 @@
+# TODO.md
+
+이 파일은 "지금 뭐가 막혀 있고 다음에 뭘 해야 하는지"의 **현재 상태 스냅샷**이다. 새 세션을
+시작할 때 전체 대화 기록을 다시 읽는 대신 이 파일부터 확인하면 된다. 작업이 끝나거나 새
+블로커가 생기면 이 파일을 그때그때 갱신한다.
+
+- 코드/구조 전반: `CLAUDE.md`
+- 작업 단위 프롬프트 모음: `PROMPTS.md`
+- 티어 시스템 설계 근거: `SERVICE_DESIGN.md`
+- 상세 TODO 백로그(여기선 중복 안 함): `CLAUDE.md`의 "미완성/TODO", `SERVICE_DESIGN.md`의
+  "열린 TODO 인덱스"
+
+## 지금 막혀 있는 것
+
+- [ ] **Anthropic API 크레딧 미충전.** `.env`에 `ANTHROPIC_API_KEY` 설정 완료, 인증도 확인됐지만
+  console.anthropic.com 계정에 크레딧이 없어 `anthropic.BadRequestError`(잔액 부족)로 실패한다.
+  사용자가 "나중에 충전하겠다"고 함 (2026-07-12). **Plans & Billing에서 충전 전까지 실제 태깅
+  API 호출이 필요한 모든 작업(A-2 이후)은 대기.**
+
+## 다음 액션 (순서대로)
+
+0. [x] ~~(사용자) 스티비 구독 폼 실제 제출 테스트~~ (2026-07-12 완료, 정상 동작 확인)
+1. [ ] (사용자) console.anthropic.com에서 API 크레딧 충전
+2. [ ] A-2 마무리 — 테스트 모드(RSS 1~2개 소스)로 수집+태깅 실행, 결과 5건 검수
+      (RSS 구조가 scrape_rss.py 파싱 로직과 일치함은 이미 실 fetch로 확인 완료, 태깅만 남음)
+3. [x] ~~A-4 — 스티비 구독 폼 연결~~ (2026-07-12 완료, 아래 참고)
+4. [x] ~~B-1 — 로컬에서 5개 페이지 확인~~ (2026-07-12 완료, 아래 참고)
+5. [ ] B-2 — GitHub Pages 배포
+6. [x] ~~C-1 — RSS 파싱 견고화~~ (2026-07-12 완료, 아래 참고)
+7. [x] ~~C-5 — 회사명 매칭 품질 개선(별칭 사전)~~ (2026-07-12 부분 완료, 아래 참고)
+
+크레딧 충전 전에도 진행 가능한 것: privacy.html 빈칸 채우기(운영자 이름/이메일은 사용자만 알 수 있음).
+
+## 최근 완료 (2026-07-12)
+
+- [x] 개발환경: Python 3.14.6 설치, `venv/` 생성, `anthropic`/`python-dotenv` 설치
+- [x] `.env` + `config_loader.py`가 자동으로 `.env`를 로드하도록 연결 (API 키 인증 확인됨,
+  크레딧 부족으로 실제 응답은 못 받음)
+- [x] etnews RSS(`rss.etnews.com/04.xml`) 실 fetch로 구조 확인 — `scrape_rss.py` 파싱 로직과
+  정확히 일치, 50건 정상 파싱 (인코딩은 정상이며 터미널 출력이 깨져 보였던 것뿐)
+- [x] 티어 시스템 설계·구현: `config/tiers.json`, `pipeline/ranking.py`, `pipeline/config_loader.py`,
+  `pipeline/build_newsletter.py`(신규), `pipeline/lookup_company.py`(신규), `SERVICE_DESIGN.md`(신규)
+- [x] `web/pricing.html` 티어 설명 문구를 새 로직(산업/회사 개수 한도)에 맞게 수정 (디자인은 불변)
+- [x] `PROMPTS.md`에 A-1/A-3 완료 표시, `SERVICE_DESIGN.md` TODO를 반영한 C-4/C-5/D-3 프롬프트 추가
+- [x] `CLAUDE.md`를 새 파일 구조/티어 표/문서 참조로 갱신
+- [x] B-1 — 로컬 서버(`python -m http.server`)로 5개 페이지 headless 스크린샷 확인. 내비게이션·
+  `pricing.html`의 새 문구(레이아웃 안 깨짐)·`news.html`의 프리미엄 잠금 뱃지 정상 표시 확인.
+  필터 칩/탭 전환은 코드 리뷰로 검증(이번 세션에서 `news.html`은 수정 안 해서 기존 동작 그대로)
+- [x] C-1 — `scrape_rss.py`에 `content:encoded` 파싱, pubDate ISO 8601 정규화, 짧은 본문
+  스킵, 지수 백오프 재시도, 소스별 로그 반영. 실제 etnews 피드 + 합성 XML로 검증
+- [x] C-5(부분) — `config/company_aliases.json` 신설, `ranking.py`의 `filter_by_company()`가
+  정식명/별칭 양방향 매칭 지원. `lookup_company.py`/`build_newsletter.py` 둘 다 자동 적용,
+  합성 데이터로 양방향 매칭 + 미등록 회사는 기존 부분일치 유지 검증. RSS 수집 범위 밖 회사를
+  못 찾는 문제(원래 이유 2번)는 여전히 미해결 — "의도적으로 미룬 것" 참고
+- [x] A-4 — 스티비 임베드 코드를 `web/index.html`에 연결 (폼 구조·검증 스크립트는 원본 유지,
+  버튼 색상만 사이트 accent로 오버라이드). 로컬 렌더링 + 외부 리소스 응답 확인. **실제 이메일
+  제출 테스트는 사용자가 직접 해봐야 함** (아래 "다음 액션" 참고)
+- [x] 구독자 선호 저장 방식 결정 — 스티비 커스텀필드 채택. 스티비 폼에 "구독 산업" 단일 선택
+  드롭다운 필드(키: `industry_interest`, 필수) 추가 완료. `SERVICE_DESIGN.md` 5번 항목 갱신.
+  **주의**: 필드 추가 과정에서 주소록(list) URL이 `tVCuKP...` → `jLnDHB...`로 바뀜 — 처음
+  테스트 구독했던 이메일이 있다면 다른 주소록에 들어가 있을 수 있음 (사용자가 확인 필요)
+
+## 의도적으로 미룬 것
+
+- **VIP 회사 검색 커버리지 문제**: 현재 RSS 수집 범위 밖 회사는 못 찾음. 회사 전용 뉴스 검색
+  API 도입은 TODO로만 남김 (`SERVICE_DESIGN.md` 8번 항목).
+- **프리미엄/VIP용 다중 산업·회사 선택 UI**: 지금 스티비 폼은 무료 티어에 맞춘 산업 1개
+  단일 선택만 지원. 프리미엄(최대 5개)·VIP(산업+회사 조합)가 열리면 필드를 다시 설계해야 함
+  (`SERVICE_DESIGN.md` 5번 항목 "남은 제약").
+- **웹 비주얼 디자인 개선("claude design")**: 서비스 로직·첫 호 발행이 끝난 뒤 별도 라운드로
+  진행하기로 함. 지금은 문구만 최신화하고 CSS/레이아웃은 그대로 둔다.
