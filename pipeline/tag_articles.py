@@ -15,8 +15,10 @@ def load_config():
     return load_industries(), load_event_types()
 
 
-def build_prompt(article: dict, industries: dict, event_types: dict) -> str:
-    # 산업 리스트를 "id: 하위분류1, 하위분류2..." 형태 텍스트로 변환
+def build_system_prompt(industries: dict, event_types: dict) -> str:
+    """모든 기사 호출에서 동일한 부분(지침/목록/스키마/규칙). 프롬프트 캐싱 대상이므로
+    기사마다 바뀌는 내용을 여기 섞지 말 것 — 캐싱은 "매번 똑같은 부분이 먼저"일 때만 적용된다.
+    """
     industry_lines = []
     for ind in industries["industries"]:
         subs = ", ".join(ind["subcategories"])
@@ -27,15 +29,9 @@ def build_prompt(article: dict, industries: dict, event_types: dict) -> str:
     sentiment_list = ", ".join(event_types["sentiment_values"])
     scope_list = ", ".join(event_types["scope_values"])
 
-    prompt = f"""당신은 산업 뉴스 분석 전문가입니다. 아래 기사를 분석해서
+    return f"""당신은 산업 뉴스 분석 전문가입니다. 사용자가 주는 기사를 분석해서
 반드시 아래 JSON 스키마 형식으로만 답변하세요.
 다른 설명, 서론, 마크다운 코드블록 표시 없이 JSON 객체 하나만 출력하세요.
-
-[기사 원문]
-제목: {article['title']}
-본문: {article['content']}
-출처: {article['source']}
-발행일: {article['published_at']}
 
 [선택 가능한 산업 및 하위분류 목록 - 반드시 이 안에서만 선택]
 {industry_block}
@@ -75,17 +71,31 @@ def build_prompt(article: dict, industries: dict, event_types: dict) -> str:
   어떤 의미가 있는지만 짧게 짚으세요. 확실하지 않으면 무리해서 만들어내지 말고 null로
   표기하세요.
 """
-    return prompt
+
+
+def build_article_message(article: dict) -> str:
+    """기사마다 바뀌는 부분만. system 프롬프트 뒤에 붙는 user 메시지로 들어간다."""
+    return f"""[기사 원문]
+제목: {article['title']}
+본문: {article['content']}
+출처: {article['source']}
+발행일: {article['published_at']}"""
 
 
 def tag_article(article: dict) -> dict:
     industries, event_types = load_config()
-    prompt = build_prompt(article, industries, event_types)
+    system_prompt = build_system_prompt(industries, event_types)
+    user_message = build_article_message(article)
 
     response = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=1000,
-        messages=[{"role": "user", "content": prompt}]
+        system=[{
+            "type": "text",
+            "text": system_prompt,
+            "cache_control": {"type": "ephemeral"}
+        }],
+        messages=[{"role": "user", "content": user_message}]
     )
 
     raw_text = response.content[0].text.strip()
