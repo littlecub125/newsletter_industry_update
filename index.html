@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>뉴스레터 · 내 산업의 흐름을 매주 한 통으로</title>
+  <link rel="stylesheet" href="https://resource.stibee.com/subscribe/stb_subscribe_form_style.css">
+  <style>
+    :root {
+      --bg: #ffffff; --text: #1a1a1a; --text-muted: #666666;
+      --accent: #2563eb; --accent-hover: #1d4ed8; --border: #e5e7eb; --surface: #f9fafb;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      color: var(--text); background: var(--bg); line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    header { border-bottom: 1px solid var(--border); padding: 16px 0; }
+    .nav { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 15px; color: var(--text-muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { font-size: 14px; font-weight: 600; color: #fff !important; background: var(--accent); padding: 8px 16px; border-radius: 8px; }
+    .nav-cta:hover { background: var(--accent-hover); }
+    .hero { padding: 72px 0 56px; text-align: center; }
+    .hero h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 20px; }
+    .hero p { font-size: 18px; color: var(--text-muted); max-width: 520px; margin: 0 auto 36px; }
+    .subscribe { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 32px; max-width: 480px; margin: 0 auto; text-align: left; }
+    .subscribe .hint { font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: left; }
+    .subscribe .hint a { color: var(--text-muted); }
+    /* 스티비 구독 폼 스타일을 사이트 톤에 맞춰 최소한으로 덮어씀 (구조는 스티비가 준 그대로 유지) */
+    .subscribe #stb_subscribe { font-family: inherit; }
+    .subscribe .stb_form_title { font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+    .subscribe .stb_form_submit_button { background-color: var(--accent) !important; }
+    .subscribe .stb_form_submit_button:hover { background-color: var(--accent-hover) !important; }
+    .features { padding: 64px 0; }
+    .features h2 { font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 40px; letter-spacing: -0.02em; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature { padding: 24px; border: 1px solid var(--border); border-radius: 12px; }
+    .feature h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .feature p { font-size: 14px; color: var(--text-muted); }
+    .industries { padding: 48px 0 64px; text-align: center; }
+    .industries h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .industries > p { color: var(--text-muted); margin-bottom: 28px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .tag { font-size: 14px; padding: 8px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; }
+    footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; font-size: 13px; color: var(--text-muted); }
+    footer a { color: var(--text-muted); }
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 30px; }
+      .hero p { font-size: 16px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">뉴스레터</a>
+        <div class="nav-links">
+          <a href="news.html">뉴스</a>
+          <a href="pricing.html">요금</a>
+          <a href="about.html">소개</a>
+          <a href="#subscribe" class="nav-cta">구독하기</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>내 산업의 흐름을<br />매주 한 통으로.</h1>
+        <p>바쁜 당신을 위해, 관심 산업의 주요 뉴스·동향·이슈만 골라 정리해 보내드립니다. 매번 찾아볼 필요 없이 읽기만 하세요.</p>
+        <!-- 스티비 구독 폼 (2026-07-12 연결). 구조는 스티비가 제공한 그대로 유지할 것 —
+             stb_subscribe_form.js가 아래 id들(stb_email, stb_policy, stb_form_result 등)을
+             참조해 유효성 검사·모달을 처리하므로 임의로 바꾸면 동작이 깨질 수 있다. -->
+        <div class="subscribe" id="subscribe">
+          <div id="stb_subscribe">
+            <form action="https://stibee.com/api/v1.0/lists/jLnDHBfGucMUHOUgYaU4q35UbsgbyA==/public/subscribers" method="POST" target="_blank" accept-charset="utf-8" class="stb_form" name="stb_subscribe_form" id="stb_subscribe_form" data-lang="" novalidate>
+              <h1 class="stb_form_title">뉴스레터 구독하기</h1>
+              <fieldset class="stb_form_set">
+                <label for="stb_email" class="stb_form_set_label">
+                  이메일 주소<span class="stb_asterisk">*</span>
+                </label>
+                <input type="text" class="stb_form_set_input" id="stb_email" name="email" required="required">
+                <div class="stb_form_msg_error" id="stb_email_error"></div>
+              </fieldset>
+              <fieldset class="stb_form_set">
+                <label for="stb_industry_interest" class="stb_form_set_label">
+                  구독 산업<span class="stb_asterisk">*</span>
+                </label>
+                <select class="stb_form_set_select" id="stb_industry_interest" name="industry_interest" required="required">
+                  <option value="">선택</option>
+                  <option>로봇</option>
+                  <option>임베디드/IOT</option>
+                  <option>반도체</option>
+                  <option>자동화/스마트팩토리</option>
+                  <option>모빌리티/자율주행</option>
+                  <option>배터리/에너지</option>
+                  <option>바이오/헬스테크</option>
+                  <option>핀테크</option>
+                  <option>AI/소프트웨어</option>
+                  <option>이커머스/플랫폼</option>
+                </select>
+                <div class="stb_form_msg_error" id="stb_industry_interest_error"></div>
+              </fieldset>
+              <div class="stb_form_policy">
+                <label>
+                  <input type="checkbox" id="stb_policy" value="stb_policy_true">
+                  <span>(필수)</span>
+                  <button id="stb_form_modal_open" data-modal="stb_form_policy_modal" class="stb_form_modal_open_btn" type="button">개인정보 수집 및 이용</button>에 동의합니다.
+                </label>
+                <div class="stb_form_msg_error" id="stb_policy_error"></div>
+                <div class="stb_form_modal stb_form_policy_text blind" id="stb_form_policy_modal">
+                  <div class="stb_form_modal_body">
+                    <h1 class="stb_form_modal_title">
+                      개인정보 수집 및 이용
+                    </h1>
+                    <div class="stb_form_modal_text">뉴스레터 발송을 위한 최소한의 개인정보를 수집하고 이용합니다. 수집된 정보는 발송 외 다른 목적으로 이용되지 않으며, 서비스가 종료되거나 구독을 해지할 경우 즉시 파기됩니다.</div>
+                    <div class="stb_form_modal_btn">
+                      <button id="stb_form_modal_close" class="stb_form_modal_close_btn" data-modal="stb_form_policy_modal" type="button">닫기</button>
+                    </div>
+                  </div>
+                  <div class="stb_form_modal_bg" id="stb_form_modal_bg"></div>
+                </div>
+              </div>
+              <div class="stb_form_result" id="stb_form_result"></div>
+              <fieldset class="stb_form_set_submit">
+                <button type="submit" class="stb_form_submit_button" id="stb_form_submit_button">구독하기</button>
+              </fieldset>
+            </form>
+          </div>
+          <script type="text/javascript" src="https://resource.stibee.com/subscribe/stb_subscribe_form.js"></script>
+          <p class="hint">언제든 수신 거부할 수 있습니다. 자세한 내용은 <a href="privacy.html">개인정보처리방침</a>을 참고하세요.</p>
+        </div>
+      </div>
+    </section>
+    <section class="features">
+      <div class="container">
+        <h2>이런 점이 좋아요</h2>
+        <div class="feature-grid">
+          <div class="feature"><h3>찾는 시간 절약</h3><p>여러 매체를 일일이 뒤질 필요 없이, 핵심만 모아 정리해 드립니다.</p></div>
+          <div class="feature"><h3>흐름이 쌓입니다</h3><p>매주 받다 보면 그 산업이 어디로 가는지 감이 잡힙니다.</p></div>
+          <div class="feature"><h3>관심 산업만</h3><p>필요한 산업만 골라 받아보세요. 관심 없는 뉴스는 빼드립니다.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="industries">
+      <div class="container">
+        <h2>다루는 산업</h2>
+        <p>관심 있는 분야를 선택해 구독할 수 있습니다.</p>
+        <div class="tags">
+          <span class="tag">로봇</span><span class="tag">임베디드/IoT</span><span class="tag">반도체</span>
+          <span class="tag">자동화/스마트팩토리</span><span class="tag">모빌리티/자율주행</span><span class="tag">배터리/에너지</span>
+          <span class="tag">바이오/헬스테크</span><span class="tag">핀테크</span><span class="tag">AI/소프트웨어</span><span class="tag">이커머스/플랫폼</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container"><p>© 2026 뉴스레터 · <a href="privacy.html">개인정보처리방침</a></p></div>
+  </footer>
+</body>
+</html>
