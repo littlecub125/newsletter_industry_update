@@ -161,7 +161,7 @@ RSS 소스 (config/sources.json)
 2. **privacy.html 빈칸** — 운영자 이름, 문의용 이메일 주소
 3. **로봇신문 등 RSS 없는 소스** — `config/sources.json`에 `type: "site_crawl"`로 표시됨, 크롤러 미구현
 4. **cluster_id** — 같은 사건 중복 기사 묶기 미구현
-5. **호스팅** — GitHub Pages / Netlify 등에 미배포
+5. ~~호스팅~~ — 완료 (2026-07-12), `web/` 폴더가 GitHub Pages로 배포됨 (아래 "배포" 섹션 참고)
 6. **스케줄러** — 주기 실행 미구현 (수동 실행만 검증됨)
 7. **VIP용 회사 선택 UI 미구현** — 구독 폼의 산업 선택은 완료(위 1번)했지만, 회사 지정(VIP
    개인/기업)과 다중 산업 선택(프리미엄)은 아직 없음. `build_newsletter.py`는 그때까지 운영자가
@@ -200,6 +200,20 @@ python pipeline/tag_articles.py
 # 회사명으로 태깅된 기사 검색 (VIP 다이제스트 수동 조립 보조, API 호출 없음)
 python pipeline/lookup_company.py "레인보우로보틱스"
 ```
+
+## 배포
+
+- **저장소**: `https://github.com/littlecub125/newsletter_industry_update` (public)
+- **사이트**: `https://littlecub125.github.io/newsletter_industry_update/`
+- GitHub Pages는 저장소 루트나 `/docs` 폴더만 배포 소스로 잡을 수 있어서, `web/` 하위 폴더를
+  그대로 서비스하기 위해 `git subtree`로 `web/` 내용만 별도 `gh-pages` 브랜치에 분리해뒀다.
+  즉 저장소에는 브랜치가 두 개다: `master`(전체 소스, 파이프라인 포함)와 `gh-pages`(웹사이트만).
+- **`web/` 파일을 고친 뒤 실제 배포에 반영하려면** 아래 두 단계가 모두 필요하다:
+  ```bash
+  git add -A && git commit -m "..."   # master에 커밋 (평소처럼)
+  git subtree push --prefix web origin gh-pages   # web/ 변경분만 gh-pages로 재배포
+  ```
+  `master`에 커밋만 하고 subtree push를 빠뜨리면 실제 배포된 사이트는 안 바뀐다.
 
 ## 이 프로젝트의 우선순위
 

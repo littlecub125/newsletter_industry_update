@@ -25,7 +25,7 @@
       (RSS 구조가 scrape_rss.py 파싱 로직과 일치함은 이미 실 fetch로 확인 완료, 태깅만 남음)
 3. [x] ~~A-4 — 스티비 구독 폼 연결~~ (2026-07-12 완료, 아래 참고)
 4. [x] ~~B-1 — 로컬에서 5개 페이지 확인~~ (2026-07-12 완료, 아래 참고)
-5. [ ] B-2 — GitHub Pages 배포
+5. [x] ~~B-2 — GitHub Pages 배포~~ (2026-07-12 완료, 아래 참고)
 6. [x] ~~C-1 — RSS 파싱 견고화~~ (2026-07-12 완료, 아래 참고)
 7. [x] ~~C-5 — 회사명 매칭 품질 개선(별칭 사전)~~ (2026-07-12 부분 완료, 아래 참고)
 
@@ -59,6 +59,13 @@
   드롭다운 필드(키: `industry_interest`, 필수) 추가 완료. `SERVICE_DESIGN.md` 5번 항목 갱신.
   **주의**: 필드 추가 과정에서 주소록(list) URL이 `tVCuKP...` → `jLnDHB...`로 바뀜 — 처음
   테스트 구독했던 이메일이 있다면 다른 주소록에 들어가 있을 수 있음 (사용자가 확인 필요)
+- [x] B-2 — 저장소를 git으로 초기화하고(비밀키 없음 확인 후 커밋)
+  `https://github.com/littlecub125/newsletter_industry_update`(public)에 푸시. `web/` 폴더만
+  `git subtree push --prefix web origin gh-pages`로 분리 배포, Settings → Pages에서 `gh-pages`
+  브랜치 활성화. 실사이트(`https://littlecub125.github.io/newsletter_industry_update/`)에서
+  index(스티비 폼)·news(필터/뉴스 목록) 페이지 headless 스크린샷으로 정상 동작 확인
+  (`news.json` fetch 포함 — 첫 스크린샷은 fetch 완료 전이라 비어 보였는데, 대기시간을 주니
+  정상이었음, 진짜 버그 아니었음)
 
 ## 의도적으로 미룬 것
 
