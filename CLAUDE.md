@@ -7,8 +7,16 @@
 이 폴더(`newsletter_claude/`)는 **dev 전용 작업공간**이다 — 코드/파이프라인/웹사이트/
 배포만 다루고, 마케팅·사업 전략 자료는 형제 폴더인 `../marketing_claude/`,
 `../business_claude/`에 있다. 세 작업공간이 어떻게 협업하는지는 프로젝트 루트의
-[`../CLAUDE.md`](../CLAUDE.md)를 참고할 것. 이 폴더만 git 저장소(공개 GitHub 저장소,
-`master`+`gh-pages`)이고 나머지 두 작업공간은 버전 관리 대상이 아니다.
+[`../CLAUDE.md`](../CLAUDE.md)를 참고할 것. 이 폴더는 독립된 **public** GitHub 저장소
+(`master`+`gh-pages`)이고, 나머지 작업공간(마케팅/사업/루트 조율 문서)은 별도의
+**private** 저장소로 관리된다 — 두 저장소는 서로 다르다, 혼동하지 말 것.
+
+**단 하나의 예외**: `web/ig-staging/`는 marketing-agent가 인스타그램 자동 업로드를 위해
+이미지/영상을 임시로 공개 URL화할 때 쓰는 스테이징 폴더다 (Instagram Graph API가 로컬
+파일을 못 읽고 공개 URL만 받기 때문 — `marketing_claude/.claude/skills/instagram-post/
+SKILL.md` "6. 자동 업로드" 참고). marketing-agent가 이 폴더에 한해 직접 커밋·
+`git subtree push`까지 하고, 게시 후 바로 정리(삭제)한다. dev-agent는 이 폴더를 자기
+작업물로 취급하지 않는다 — 사용 후 남아있으면 정리가 안 된 것이니 지워도 된다.
 
 ## 프로젝트 개요
 
