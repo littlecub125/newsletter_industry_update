@@ -52,6 +52,13 @@ B: 배포 → C: 파이프라인 개선 → D: 나중에)별로 정리돼 있으
 
 ```
 dev_claude/
+├── admin/               # 로컬 전용 기사 검수/승인 페이지 (인터넷에 올리지 않음)
+│   ├── index.html
+│   ├── admin.js
+│   └── admin.css
+├── scripts/             # 스케줄러 등 운영 스크립트
+│   ├── run_pipeline_scheduled.ps1  # 매일 09:00 수집+태깅만 실행 (배포는 안 함)
+│   └── logs/            # 실행 로그 (gitignore 대상)
 ├── web/                 # 정적 웹사이트 (그대로 호스팅 가능)
 │   ├── index.html       # 홈 (구독 랜딩)
 │   ├── news.html        # 뉴스 (산업 필터 + 최신/아카이브 탭)
@@ -66,17 +73,20 @@ dev_claude/
 │   ├── tag_articles.py     # LLM 태깅 (Anthropic API)
 │   ├── run_pipeline.py     # 수집 → 태깅 실행
 │   ├── build_news.py       # 태깅 결과 → news.json 변환 (free/premium만, 웹 노출용)
-│   ├── build_newsletter.py # 태깅 결과 → 이메일 초안 HTML (4개 티어 + 회사 섹션, 발송용)
-│   └── lookup_company.py   # 회사명으로 태깅 기사 검색 CLI (VIP 수동 조립 보조)
+│   ├── build_newsletter.py # 태깅 결과 → 이메일 초안 HTML (4개 티어 + 회사 섹션, 발송용, approved만 포함)
+│   ├── lookup_company.py   # 회사명으로 태깅 기사 검색 CLI (VIP 수동 조립 보조)
+│   └── admin_server.py     # 로컬 관리자 페이지 서버 (admin/ 서빙 + tagged_articles.jsonl 편집 API)
 ├── config/              # 설정 파일 (여기만 고치면 확장됨)
 │   ├── industries.json  # 산업 대분류 10개 + 중분류
 │   ├── event_types.json # 이벤트 유형, 감성, scope 고정 리스트
 │   ├── sources.json     # 산업별 RSS 소스 매핑
 │   ├── tiers.json       # 티어별 한도 (산업 수/회사 수/뉴스 개수/광고/웹 노출 방식)
-│   └── company_aliases.json  # 회사명 별칭 사전 (표기 불일치 보완, lookup_company.py가 사용)
+│   ├── company_aliases.json  # 회사명 별칭 사전 (표기 불일치 보완, lookup_company.py가 사용)
+│   └── pipeline_limits.json  # 회차당 최대 태깅 건수 (API 비용 상한, 무인 스케줄러 가드)
 └── data/                # 실행 시 자동 생성 (gitignore 대상)
     ├── processed_urls.json      # 중복 방지용 처리 완료 URL
-    ├── tagged_articles.jsonl    # 태깅 결과 누적
+    ├── newswire_daily_counts.json  # 뉴스와이어 소스별 하루 5건 캡 카운터 (날짜 바뀌면 초기화)
+    ├── tagged_articles.jsonl    # 태깅 결과 누적 (approved 필드 포함 -- admin/ 페이지가 관리)
     └── newsletter_drafts/       # build_newsletter.py가 생성하는 이메일 초안
 ```
 
@@ -84,12 +94,18 @@ dev_claude/
 
 ```
 RSS 소스 (config/sources.json)
-  ↓ scrape_rss.py         (수집 + 링크 기준 중복 제거)
+  ↓ scrape_rss.py         (수집 + 링크 기준 중복 제거, 회차당 태깅 상한 적용)
   ↓ tag_articles.py       (Claude API로 JSON 태깅)
-  → data/tagged_articles.jsonl
-  ↓ build_news.py         (산업별 impact_score 상위 추출)
+  → data/tagged_articles.jsonl        (approved: false로 시작)
+  ↓ admin/ (admin_server.py)          (사람이 검수 후 approved: true로 승인)
+  ↓ build_news.py         (approved인 기사만, 산업별 impact_score 상위 추출)
   → web/news.json         (웹사이트 자동 반영)
 ```
+
+`data/tagged_articles.jsonl`(수집+태깅, 매일 09:00 스케줄러가 무인 실행)과
+`web/news.json`/뉴스레터 초안 생성(사람 검수 후 수동 실행) 사이에 **admin/ 관리자
+페이지에서의 승인**이 끼어 있다 -- "완전 자동 발행 금지" 원칙의 실제 집행 지점.
+아래 "실행 방법"의 "관리자 페이지" 절 참고.
 
 ## 기사 태깅 스키마
 
@@ -112,6 +128,12 @@ RSS 소스 (config/sources.json)
   사실에만 근거** — 다른 기사나 배경지식을 끌어와 종합·추론하지 않는다(할루시네이션 방지,
   사람 검수 부담을 지금 수준으로 유지). 확실하지 않으면 null |
 | reasoning | 태깅 근거 한 줄 (사람이 검수할 때 사용) |
+
+위 필드는 전부 `tag_articles.py`가 채우는 `tagged` 객체 안에 있다. 레코드 최상위에는
+`approved`(bool) 필드가 별도로 있다 -- `tag_article()`은 이 필드를 채우지 않고, 태깅
+직후엔 존재하지 않거나 `false`다. `admin/` 관리자 페이지에서 사람이 체크해야 `true`가
+되고, `build_news.py`/`build_newsletter.py`는 `approved: true`인 레코드만 읽는다
+(`config_loader.load_tagged_articles(only_approved=True)`).
 
 ### 아직 구현되지 않은 태그
 - `cluster_id`: 같은 사건을 다룬 여러 매체 기사를 하나로 묶기 (중복 게재 방지)
@@ -191,9 +213,13 @@ RSS 소스 (config/sources.json)
 1. ~~스티비 구독 폼 연결~~ — 완료 (2026-07-12), `web/index.html`에 이메일 + 산업 선택 필드 연결
 2. ~~privacy.html 빈칸~~ — 완료 (2026-07-12), 책임자 김유빈 / 문의 yubi2023@gmail.com
 3. **로봇신문 등 RSS 없는 소스** — `config/sources.json`에 `type: "site_crawl"`로 표시됨, 크롤러 미구현
-4. **cluster_id** — 같은 사건 중복 기사 묶기 미구현
+4. **cluster_id** — 같은 사건 중복 기사 묶기 미구현 (2026-07-20에 `ranking.py`의
+   `_dedup_scored`로 최소한의 완화책만 적용, 정식 구현은 아직)
 5. ~~호스팅~~ — 완료 (2026-07-12), `web/` 폴더가 GitHub Pages로 배포됨 (아래 "배포" 섹션 참고)
-6. **스케줄러** — 주기 실행 미구현 (수동 실행만 검증됨)
+6. ~~스케줄러~~ — 완료 (2026-07-20). 매일 09:00 Windows 작업 스케줄러
+   (`NewsletterProject-PipelineScheduler`)가 `scripts/run_pipeline_scheduled.ps1`을 통해
+   수집+태깅(`run_pipeline.py`)만 무인 실행. `build_news.py`/`build_newsletter.py`/배포는
+   자동화하지 않음 — 아래 "실행 방법 > 관리자 페이지"에서 사람이 검수·승인 후 수동 실행.
 7. **VIP용 회사 선택 UI 미구현** — 구독 폼의 산업 선택은 완료(위 1번)했지만, 회사 지정(VIP
    개인/기업)과 다중 산업 선택(프리미엄)은 아직 없음. `build_newsletter.py`는 그때까지 운영자가
    `--industries`/`--companies`를 직접 지정하는 방식으로 운영한다. `SERVICE_DESIGN.md` 5번
@@ -210,19 +236,63 @@ RSS 소스 (config/sources.json)
 pip install anthropic python-dotenv
 # ANTHROPIC_API_KEY=... 를 프로젝트 루트 .env 파일에 저장 (config_loader.py가 자동 로드함)
 
-# 1. 수집 + 태깅
+# 1. 수집 + 태깅 (매일 09:00 스케줄러가 자동으로도 실행함, 아래 "스케줄러" 참고)
 python pipeline/run_pipeline.py
 
-# 2. 태깅 결과 → 웹사이트 데이터 변환
+# 2. 관리자 페이지에서 검수 + 승인 (아래 "관리자 페이지" 참고) — 이 단계를 건너뛰면
+#    3/4단계가 대상 기사를 0건으로 판단한다 (approved=true만 포함하기 때문)
+
+# 3. 태깅 결과 → 웹사이트 데이터 변환 (approved=true인 기사만 포함)
 python pipeline/build_news.py --week "2026년 7월 2주"
 
-# 3. 태깅 결과 → 이메일 초안 (티어별로 별도 실행)
+# 4. 태깅 결과 → 이메일 초안 (티어별로 별도 실행, approved=true인 기사만 포함)
 python pipeline/build_newsletter.py --tier free --week "2026년 7월 2주"
 
-# 4. 웹사이트 확인 (정적 파일이라 그냥 열면 됨)
+# 5. 웹사이트 확인 (정적 파일이라 그냥 열면 됨)
 #    단, news.html은 fetch로 news.json을 읽으므로 로컬 서버 필요
 cd web && python -m http.server 8000
 ```
+
+### 관리자 페이지 (기사 검수/승인)
+
+`admin_server.py`가 `admin/`(index.html/admin.js/admin.css)을 서빙하고
+`data/tagged_articles.jsonl`을 읽고 쓰는 API를 함께 제공한다. **로컬 전용 도구다 —
+인터넷에 올리지 않는다**(1인 운영자 전제라 인증 없음, `web/`와 완전히 분리된 폴더에 둔
+이유이기도 함).
+
+```bash
+python pipeline/admin_server.py
+# 브라우저에서 http://127.0.0.1:8787 접속, Ctrl+C로 종료
+```
+
+- 산업/승인 상태로 필터링, impact_score/수집순 정렬
+- 기사별로 `summary`/`why_it_matters`/`industries`를 직접 편집 가능
+- `industries`에 `config/industries.json`에 없는 값(예: 한글 표시 라벨이 실수로 들어간
+  경우 — `group_by_industry()`에서 조용히 누락되는 버그, 2026-07-20 발견)이 있으면
+  빨간 배지로 표시됨
+- **승인(approved) 체크박스** — 이걸 체크해야 `build_news.py`/`build_newsletter.py`
+  산출물에 포함된다. 체크 안 하면 기본값은 미승인(false)이라 자동으로 제외됨(완전 자동
+  발행 금지 원칙의 실제 집행 지점)
+
+### 스케줄러 (수집+태깅만 자동)
+
+Windows 작업 스케줄러 `NewsletterProject-PipelineScheduler`가 매일 09:00에
+`scripts/run_pipeline_scheduled.ps1`을 실행해 `run_pipeline.py`(수집+태깅)만 무인으로
+돈다. `daily_report.ps1`(매일 23:00, STATUS.md 자동 갱신)과 시간이 겹치지 않는다.
+
+- **이 스케줄러는 `build_news.py`/`build_newsletter.py`/배포를 절대 자동 호출하지
+  않는다.** 승인된 데이터만 배포한다는 원칙 때문에 사람이 위 "관리자 페이지"에서
+  검수·승인한 뒤 수동으로 2~5단계를 실행해야 한다.
+- API 비용 상한: `config/pipeline_limits.json`의 `max_articles_tagged_per_run`(현재
+  50)이 회차당 태깅 가능한 최대 기사 수다. 넘는 만큼은 이번 실행에서 태깅하지 않고
+  `processed_urls.json`에도 기록하지 않아 다음 실행 때 자동으로 다시 후보가 된다(유실
+  아님) — 버그나 소스 물량 급증으로 하루아침에 API 비용이 크게 늘어나는 걸 막는 하드
+  캡이다.
+- 실행 로그: `scripts/logs/`(gitignore 대상, UTF-16 인코딩 — PowerShell
+  리다이렉션(`*>`) 기본 인코딩이라 `python -c "open(f, encoding='utf-16')..."`로 열어야
+  한글이 깨지지 않는다)
+- 등록/수정 확인: `schtasks /query /tn NewsletterProject-PipelineScheduler /fo list /v`
+- 스케줄 변경: `schtasks /change /tn NewsletterProject-PipelineScheduler /st HH:MM`
 
 개별 모듈만 따로 확인하고 싶을 때 (전체 파이프라인 대비 API 비용/리스크가 작음):
 
