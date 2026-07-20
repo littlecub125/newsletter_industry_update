@@ -10,7 +10,8 @@
   4. 이번 주차(week) 블록을 만들어 news.json의 weeks 배열 맨 앞에 추가
 
 사용:
-  python build_news.py --week "2026년 7월 2주"
+  python build_news.py                          # --week 생략 시 오늘 날짜로 자동 계산
+  python build_news.py --week "2026년 7월 2주"   # 수동 지정도 가능
 
 주의:
   - 같은 주차 라벨이 이미 있으면 덮어쓸지 물어봅니다(중복 방지).
@@ -25,7 +26,7 @@ import os
 from datetime import datetime
 
 from config_loader import BASE_DIR, DATA_DIR, load_industries as load_industries_config
-from config_loader import load_tagged_articles, load_tiers
+from config_loader import default_week_label, load_tagged_articles, load_tiers
 from ranking import group_by_industry
 
 TAGGED_FILE = os.path.join(DATA_DIR, "tagged_articles.jsonl")
@@ -100,10 +101,13 @@ def load_or_init_news():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--week", required=True, help='주차 라벨 (예: "2026년 7월 2주")')
+    parser.add_argument("--week", default=None,
+                        help='주차 라벨 (예: "2026년 7월 2주"). 생략하면 오늘 날짜로 자동 계산')
     parser.add_argument("--date", default=datetime.now().strftime("%Y-%m-%d"),
                         help="발행일 (기본: 오늘)")
     args = parser.parse_args()
+    if args.week is None:
+        args.week = default_week_label()
 
     week_block = build_week(args.week, args.date)
     if week_block is None:

@@ -10,9 +10,9 @@
   "초안"이며 그대로 발송하지 않는다.
 
 사용:
-  python build_newsletter.py --tier free --week "2026년 7월 2주"
+  python build_newsletter.py --tier free                          # --week 생략 시 자동 계산
   python build_newsletter.py --tier vip_individual --industries robot,ai_software \
-      --companies "레인보우로보틱스,네이버" --week "2026년 7월 2주"
+      --companies "레인보우로보틱스,네이버" --week "2026년 7월 2주"  # 수동 지정도 가능
 
 출력:
   data/newsletter_drafts/{week}_{tier}.html 로 저장 + 표준출력에도 그대로 출력
@@ -24,7 +24,7 @@ import html
 import os
 import sys
 
-from config_loader import DATA_DIR, load_company_aliases, load_industries, load_tagged_articles, load_tiers
+from config_loader import DATA_DIR, default_week_label, load_company_aliases, load_industries, load_tagged_articles, load_tiers
 from ranking import filter_by_company, get_tier, select_items_for_tier
 
 DRAFTS_DIR = os.path.join(DATA_DIR, "newsletter_drafts")
@@ -138,10 +138,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tier", required=True,
                          help="config/tiers.json의 티어 id (free/premium/vip_individual/vip_business)")
-    parser.add_argument("--week", required=True, help='주차 라벨 (예: "2026년 7월 2주")')
+    parser.add_argument("--week", default=None,
+                         help='주차 라벨 (예: "2026년 7월 2주"). 생략하면 오늘 날짜로 자동 계산')
     parser.add_argument("--industries", default="", help="콤마로 구분한 산업 id 목록 (생략 시 전체 산업)")
     parser.add_argument("--companies", default="", help="콤마로 구분한 회사명 목록 (VIP 티어 전용)")
     args = parser.parse_args()
+    if args.week is None:
+        args.week = default_week_label()
 
     industries = parse_csv_arg(args.industries)
     companies = parse_csv_arg(args.companies)

@@ -5,6 +5,7 @@
 
 import json
 import os
+from datetime import datetime
 
 from dotenv import load_dotenv
 
@@ -39,6 +40,16 @@ def load_tiers() -> dict:
 
 def load_company_aliases() -> dict:
     return _load_json("company_aliases.json")
+
+
+def default_week_label(date: datetime = None) -> str:
+    """오늘(또는 주어진 날짜) 기준 "YYYY년 M월 N주" 라벨을 계산한다. N = ceil(day/7).
+    --week를 매번 사람이 손으로 계산해서 넘겨야 했던 게 실수(날짜 지난 라벨 그대로
+    씀)로 이어진 적이 있어서(2026-07-20), build_news.py/build_newsletter.py 둘 다
+    --week 생략 시 이 함수로 자동 계산하도록 한다."""
+    d = date or datetime.now()
+    week_no = (d.day - 1) // 7 + 1
+    return f"{d.year}년 {d.month}월 {week_no}주"
 
 
 def load_tagged_articles() -> list:
