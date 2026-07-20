@@ -2,6 +2,8 @@
 태깅 결과(tagged_articles.jsonl) -> news.json 주차 데이터 변환
 
 동작:
+  0. tagged_articles.jsonl에서 approved=true인 기사만 읽음 (admin/ 관리자 페이지에서
+     사람이 검수·승인한 것만 -- "완전 자동 발행 금지" 원칙의 실제 집행 지점)
   1. tagged_articles.jsonl을 읽음
   2. 산업(industry)별로 그룹핑
   3. 각 산업에서 impact_score 상위 N개 추출 (N은 config/tiers.json의 premium.news_count_per_industry)
@@ -44,9 +46,11 @@ def tier_news_count(tier_id: str) -> int:
 
 
 def load_tagged():
-    records = load_tagged_articles()
+    # only_approved=True: 관리자 페이지(admin/)에서 사람이 승인 체크한 기사만 포함한다
+    # (완전 자동 발행 금지 원칙의 실제 집행 지점 -- config_loader.load_tagged_articles 참고)
+    records = load_tagged_articles(only_approved=True)
     if not records:
-        print(f"[경고] {TAGGED_FILE}이 없습니다. 먼저 run_pipeline.py를 실행하세요.")
+        print(f"[경고] 승인된(approved=true) 기사가 없습니다. admin/ 관리자 페이지에서 먼저 검수·승인하세요.")
     return records
 
 

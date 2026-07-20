@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>뉴스레터 관리자 - 기사 검수</title>
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body>
+  <header>
+    <h1>기사 검수 / 승인</h1>
+    <p class="hint">
+      로컬 전용 도구입니다. 여기서 <strong>승인(approved)</strong> 체크를 해야만
+      build_news.py / build_newsletter.py 산출물에 포함됩니다 (완전 자동 발행 금지 원칙).
+    </p>
+    <div id="summary-bar" class="summary-bar">불러오는 중...</div>
+  </header>
+
+  <main>
+    <section class="toolbar">
+      <label>
+        산업 필터
+        <select id="filter-industry">
+          <option value="">전체</option>
+        </select>
+      </label>
+      <label>
+        상태 필터
+        <select id="filter-status">
+          <option value="">전체</option>
+          <option value="approved">승인됨</option>
+          <option value="unapproved">미승인</option>
+          <option value="invalid">industries 오류만</option>
+        </select>
+      </label>
+      <label>
+        정렬
+        <select id="sort-by">
+          <option value="impact_desc">impact_score 높은순</option>
+          <option value="impact_asc">impact_score 낮은순</option>
+          <option value="index_desc">최근 수집순</option>
+        </select>
+      </label>
+      <button id="refresh-btn">새로고침</button>
+    </section>
+
+    <div class="layout">
+      <section class="list-panel">
+        <ul id="article-list"></ul>
+      </section>
+
+      <section class="editor-panel" id="editor-panel">
+        <p class="placeholder">왼쪽에서 기사를 선택하세요.</p>
+      </section>
+    </div>
+  </main>
+
+  <script src="/admin.js"></script>
+</body>
+</html>

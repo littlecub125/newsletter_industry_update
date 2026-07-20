@@ -52,8 +52,13 @@ def default_week_label(date: datetime = None) -> str:
     return f"{d.year}년 {d.month}월 {week_no}주"
 
 
-def load_tagged_articles() -> list:
-    """data/tagged_articles.jsonl을 줄 단위 JSON으로 읽는다. 파일이 없으면 빈 리스트."""
+def load_tagged_articles(only_approved: bool = False) -> list:
+    """data/tagged_articles.jsonl을 줄 단위 JSON으로 읽는다. 파일이 없으면 빈 리스트.
+
+    only_approved=True면 관리자 페이지(admin/)에서 사람이 `approved: true`로 표시한
+    기사만 반환한다 -- "완전 자동 발행 금지" 원칙의 실제 집행 지점. build_news.py/
+    build_newsletter.py는 반드시 only_approved=True로 호출해야 한다. admin_server.py는
+    검수 전 기사도 보여줘야 하므로 기본값(False)을 그대로 쓴다."""
     path = os.path.join(DATA_DIR, "tagged_articles.jsonl")
     records = []
     if not os.path.exists(path):
@@ -63,4 +68,6 @@ def load_tagged_articles() -> list:
             line = line.strip()
             if line:
                 records.append(json.loads(line))
+    if only_approved:
+        records = [r for r in records if r.get("approved")]
     return records

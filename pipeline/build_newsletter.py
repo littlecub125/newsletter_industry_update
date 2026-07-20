@@ -5,6 +5,8 @@
 - --industries로 이번 발송에 포함할 산업을 지정한다 (생략 시 전체 산업 대상)
 - --companies는 VIP 티어(vip_individual/vip_business) 전용. 지정한 회사명이
   tagged.companies[]에 포함된 기사를 모아 별도 섹션으로 추가한다
+- approved=true로 표시된 기사만 포함한다 (admin/ 관리자 페이지에서 사람이 승인) -- 완전
+  자동 발행 금지 원칙의 실제 집행 지점
 - 완전 자동 발행 금지 원칙(CLAUDE.md)에 따라 상단에 검수 필수 배너를 고정 삽입하고,
   기사 사이에 운영자가 직접 채워 넣을 코멘트 자리표시를 남긴다. 이 스크립트의 출력은
   "초안"이며 그대로 발송하지 않는다.
@@ -80,7 +82,11 @@ def build_newsletter_html(tier_id: str, week_label: str, industries: list, compa
         print(f"[경고] '{tier_id}' 티어는 회사 지정 기능이 없습니다 (VIP 전용). --companies는 무시합니다.")
         companies = []
 
-    records = load_tagged_articles()
+    # only_approved=True: admin/ 관리자 페이지에서 사람이 승인 체크한 기사만 포함한다
+    # (완전 자동 발행 금지 원칙의 실제 집행 지점 -- config_loader.load_tagged_articles 참고)
+    records = load_tagged_articles(only_approved=True)
+    if not records:
+        print("[경고] 승인된(approved=true) 기사가 없습니다. admin/ 관리자 페이지에서 먼저 검수·승인하세요.")
 
     industries_data = load_industries_list()
     labels = {ind["id"]: ind["label_ko"] for ind in industries_data}
