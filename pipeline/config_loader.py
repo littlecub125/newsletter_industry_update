@@ -42,6 +42,11 @@ def load_company_aliases() -> dict:
     return _load_json("company_aliases.json")
 
 
+def load_pipeline_limits() -> dict:
+    """run_pipeline.py 회차당 API 비용 상한 등 실행 가드 설정. config/pipeline_limits.json 참고."""
+    return _load_json("pipeline_limits.json")
+
+
 def default_week_label(date: datetime = None) -> str:
     """오늘(또는 주어진 날짜) 기준 "YYYY년 M월 N주" 라벨을 계산한다. N = ceil(day/7).
     --week를 매번 사람이 손으로 계산해서 넘겨야 했던 게 실수(날짜 지난 라벨 그대로

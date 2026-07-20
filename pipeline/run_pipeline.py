@@ -11,6 +11,11 @@
 
 결과:
     tagged_articles.jsonl 에 한 줄당 기사 하나씩 JSON으로 누적 저장
+
+API 비용 상한:
+    config/pipeline_limits.json의 max_articles_tagged_per_run이 회차당(이번 실행 1회당)
+    태깅 가능한 최대 기사 수를 정한다. 스케줄러로 무인 실행될 때 버그/소스 물량 급증으로
+    비용이 무제한으로 늘어나는 걸 막기 위한 하드 캡 -- 정교한 비용 회계가 아니다.
 """
 
 import json
@@ -18,6 +23,7 @@ import os
 import time
 from datetime import datetime
 
+from config_loader import load_pipeline_limits
 from scrape_rss import collect_all
 from tag_articles import tag_article
 
@@ -41,8 +47,11 @@ def append_result(original: dict, tagged: dict):
 
 
 def run():
+    limits = load_pipeline_limits()
+    cap = limits.get("max_articles_tagged_per_run")
+
     print("=== 1단계: RSS 수집 ===")
-    new_articles = collect_all()
+    new_articles = collect_all(max_new_articles=cap)
 
     if not new_articles:
         print("신규 기사가 없습니다. 종료합니다.")

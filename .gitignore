@@ -16,3 +16,6 @@ venv/
 
 # Claude Code 개인 설정 (공유 불필요)
 .claude/settings.local.json
+
+# 스케줄러 실행 로그 (재생성 가능)
+scripts/logs/

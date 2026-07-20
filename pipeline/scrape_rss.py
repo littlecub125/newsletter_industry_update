@@ -188,7 +188,12 @@ def collect_articles_for_industry(industry_id: str, sources_config: dict, daily_
     return all_articles
 
 
-def collect_all(sources_path: str = None) -> list:
+def collect_all(sources_path: str = None, max_new_articles: int = None) -> list:
+    """max_new_articles를 주면 이번 실행에서 반환(=태깅 대상)할 신규 기사 수를 그 값으로
+    제한한다 (config/pipeline_limits.json의 max_articles_tagged_per_run, API 비용 상한
+    가드 - TODO.md "장기 구상" 참고). 상한을 넘는 나머지는 processed_urls.json에 아예
+    기록하지 않아서, 다음 실행 때 다시 수집·태깅 후보로 남는다 (이번 회차에서 조용히
+    유실되지 않음)."""
     if sources_path is None:
         sources_config = load_sources()
     else:
@@ -204,7 +209,16 @@ def collect_all(sources_path: str = None) -> list:
         for a in articles:
             if a["link"] not in processed:
                 new_articles.append(a)
-                processed.add(a["link"])
+
+    if max_new_articles is not None and len(new_articles) > max_new_articles:
+        skipped = len(new_articles) - max_new_articles
+        print(f"[CAP] 신규 기사 {len(new_articles)}건이 회차 상한({max_new_articles}건)을 "
+              f"초과해 {max_new_articles}건만 태깅 대상으로 사용합니다. 나머지 {skipped}건은 "
+              f"processed 표시하지 않으므로 다음 실행에서 다시 수집됩니다.")
+        new_articles = new_articles[:max_new_articles]
+
+    for a in new_articles:
+        processed.add(a["link"])
 
     save_processed_urls(processed)
     save_daily_counts(daily_state)
