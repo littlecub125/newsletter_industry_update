@@ -45,7 +45,7 @@
   "weeks": [
     {
       "week_label": "2026년 7월 2주",
-      "published_at": "2026-07-12",
+      "published_at": "2026-07-20",
       "items": [
         {
           "industry": "robot",
@@ -237,17 +237,6 @@
         {
           "industry": "ai_software",
           "tier": "premium",
-          "title": "TetraMem and SK hynix Showcase Successful Technology Collaboration Advancing Memory-Centric AI Computing",
-          "summary": "TetraMem과 SK하이닉스가 아날로그 인메모리 컴퓨팅 기술을 기반으로 한 AI 컴퓨팅 혁신을 위한 기술 협력 성과를 공동 발표했다.",
-          "source": "뉴스와이어 - 반도체",
-          "link": "https://www.newswire.co.kr/newsRead.php?no=1038247&sourceType=rss",
-          "event_type": "파트너십/수주",
-          "sentiment": "긍정",
-          "why_it_matters": "메모리 중심 AI 컴퓨팅이라는 신흥 분야에서 글로벌 협력 사례가 나온 만큼, 반도체 및 AI 하드웨어 분야 취업준비생은 A-IMC 같은 차세대 메모리 기술 트렌드를 파악해 두는 것이 유리하다."
-        },
-        {
-          "industry": "ai_software",
-          "tier": "premium",
           "title": "삼성전자, AI 인프라에 최적화된  기업용 SSD ‘PM1763’ 양산",
           "summary": "삼성전자가 PCIe 6.0 인터페이스를 기반으로 AI 인프라 환경에 맞춰 설계된 기업용 SSD 신제품 PM1763의 양산을 개시했다.",
           "source": "뉴스와이어 - 반도체",
@@ -266,6 +255,17 @@
           "event_type": "제품출시/기술발표",
           "sentiment": "긍정",
           "why_it_matters": "시연 기반 학습 아키텍처는 로봇 SW 개발 및 AI 학습 설계 분야의 새로운 기술 방향을 제시하므로, 관련 직무를 준비하는 취업준비생이나 현직자에게 주목할 만한 기술 트렌드다."
+        },
+        {
+          "industry": "ai_software",
+          "tier": "premium",
+          "title": "Striding AI, 피지컬 AI 현장 배치를 위한 차세대 로봇 파운데이션 시스템 개발",
+          "summary": "중국 AI 스타트업 Striding AI가 로봇이 실제 환경에서 인식·추론·행동할 수 있도록 지원하는 차세대 로봇 파운데이션 시스템 개발 계획을 공식 발표했다.",
+          "source": "뉴스와이어 - 로봇",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037882&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "로봇 SW/플랫폼 분야의 취업준비생과 현직자 입장에서 피지컬 AI 기반 파운데이션 시스템이 새로운 기술 방향으로 부상하고 있음을 보여주는 사례로, 해당 기술 스택에 대한 이해와 준비가 중요해질 수 있다."
         },
         {
           "industry": "automation_factory",
@@ -325,17 +325,6 @@
         {
           "industry": "automation_factory",
           "tier": "premium",
-          "title": "Rockwell Automation Site Named a World Economic Forum Global Lighthouse",
-          "summary": "Rockwell Automation의 싱가포르 제조시설이 세계경제포럼(WEF)이 선정하는 '글로벌 등대공장'에 이름을 올리며 첨단 제조 역량을 국제적으로 인정받았다.",
-          "source": "뉴스와이어 - 제조설비",
-          "link": "https://www.newswire.co.kr/newsRead.php?no=1037315&sourceType=rss",
-          "event_type": "기타",
-          "sentiment": "긍정",
-          "why_it_matters": "산업 자동화 및 스마트팩토리 분야 취업준비생이나 현직자 입장에서, Rockwell Automation이 글로벌 등대공장으로 선정됨은 해당 기업의 디지털 전환 기술력이 세계 최고 수준임을 의미하므로 관련 직군의 기술 방향성과 역량 기준을 파악하는 데 참고할 수 있다."
-        },
-        {
-          "industry": "automation_factory",
-          "tier": "premium",
           "title": "현대자동차 울산공장-SICK코리아, 미래 제조 환경 안전 혁신 위한 업무협약 체결",
           "summary": "SICK코리아와 현대자동차 울산공장이 차세대 제조 현장의 안전성 강화를 목표로 첨단 안전 기술 협력에 관한 MOU를 공식 체결했다.",
           "source": "뉴스와이어 - 제조설비",
@@ -378,6 +367,17 @@
           "why_it_matters": "협동로봇 기반 팔레타이징 자동화가 현장에서 직면하는 가반하중 문제를 그리퍼 솔루션으로 해결한 실제 사례로, 로봇 엔드이펙터 및 자동화 설비 분야 취업준비생과 현직자에게 실무 적용 방향에 대한 참고점을 제공한다."
         },
         {
+          "industry": "automation_factory",
+          "tier": "premium",
+          "title": "캡비디아, MBD 준비성, QIF 워크플로 및 디지털 스레드 자동화 강화를 위한 2026 R1 소프트웨어 릴리스 발표",
+          "summary": "캡비디아가 제조업체·OEM·공급업체 등을 대상으로 모델 기반 정의(MBD)와 품질정보 교환(QIF) 워크플로, 디지털 스레드 자동화 기능을 강화한 2026 R1 소프트웨어 신버전을 출시했다.",
+          "source": "뉴스와이어 - 소프트웨어",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1038417&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "MBD·MBE 및 CAD 상호운용성 분야의 최신 릴리스 내용을 파악해 두면, 제조 디지털화 관련 업무를 수행하는 현직자나 해당 분야 취업을 준비 중인 구직자가 실무에서 요구되는 기술 스택을 미리 점검하는 데 도움이 된다."
+        },
+        {
           "industry": "semiconductor",
           "tier": "free",
           "title": "삼성전자, 2026년 2분기 잠정 실적 발표",
@@ -402,17 +402,6 @@
         {
           "industry": "semiconductor",
           "tier": "free",
-          "title": "TetraMem and SK hynix Showcase Successful Technology Collaboration Advancing Memory-Centric AI Computing",
-          "summary": "TetraMem과 SK하이닉스가 아날로그 인메모리 컴퓨팅 기술을 기반으로 한 AI 컴퓨팅 혁신을 위한 기술 협력 성과를 공동 발표했다.",
-          "source": "뉴스와이어 - 반도체",
-          "link": "https://www.newswire.co.kr/newsRead.php?no=1038247&sourceType=rss",
-          "event_type": "파트너십/수주",
-          "sentiment": "긍정",
-          "why_it_matters": "메모리 중심 AI 컴퓨팅이라는 신흥 분야에서 글로벌 협력 사례가 나온 만큼, 반도체 및 AI 하드웨어 분야 취업준비생은 A-IMC 같은 차세대 메모리 기술 트렌드를 파악해 두는 것이 유리하다."
-        },
-        {
-          "industry": "semiconductor",
-          "tier": "premium",
           "title": "삼성전자, AI 인프라에 최적화된  기업용 SSD ‘PM1763’ 양산",
           "summary": "삼성전자가 PCIe 6.0 인터페이스를 기반으로 AI 인프라 환경에 맞춰 설계된 기업용 SSD 신제품 PM1763의 양산을 개시했다.",
           "source": "뉴스와이어 - 반도체",
@@ -431,17 +420,6 @@
           "event_type": "제품출시/기술발표",
           "sentiment": "긍정",
           "why_it_matters": "최신 세대 3D 낸드 생산이 본격화됨에 따라 메모리 반도체 설계·공정 직군의 기술 요구 수준이 높아질 수 있으며, 관련 분야 취업을 준비하는 이들은 최신 3D 낸드 기술 동향을 파악해 두는 것이 도움이 된다."
-        },
-        {
-          "industry": "semiconductor",
-          "tier": "premium",
-          "title": "Kioxia and Sandisk Begin Production of 10th-Generation 3D Flash Memory Products at Kitakami Plant Fab2",
-          "summary": "Kioxia와 Sandisk가 일본 기타카미 공장 Fab2에서 10세대 3D 낸드플래시 메모리 제품의 양산을 공식 개시했다.",
-          "source": "뉴스와이어 - 반도체",
-          "link": "https://www.newswire.co.kr/newsRead.php?no=1037977&sourceType=rss",
-          "event_type": "제품출시/기술발표",
-          "sentiment": "긍정",
-          "why_it_matters": "낸드플래시 메모리 분야의 최신 세대 제품 양산이 시작된 만큼, 반도체 메모리 공정 및 장비 관련 직군에서의 기술 동향 파악에 직접적으로 도움이 된다."
         },
         {
           "industry": "semiconductor",
@@ -488,6 +466,28 @@
           "why_it_matters": "카메라 후처리 IP는 로봇 비전 및 모바일 영상처리 분야의 핵심 기술로, 반도체 팹리스 및 로봇 하드웨어 직군 취업준비생이라면 ISP·CPP 관련 IP 설계 트렌드를 파악하는 데 참고할 수 있다."
         },
         {
+          "industry": "semiconductor",
+          "tier": "premium",
+          "title": "키오시아, 고성능, 고용량 및 저전력소비를 제공하는 10세대 BiCS FLASH™ 디바이스의 샘플 출하 시작",
+          "summary": "키오시아가 자사의 10세대 3D 낸드플래시 기술을 적용한 1Tb TLC 메모리 제품의 샘플 출하를 개시하며, 고성능·고용량·저전력 특성을 갖춘 차세대 메모리 시장 진입을 공식화했다.",
+          "source": "뉴스와이어 - 반도체",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037973&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "메모리 반도체 분야 취업준비생이나 현직자라면 글로벌 주요 낸드플래시 업체인 키오시아의 세대 전환 시점과 기술 방향성을 파악함으로써 업계 기술 트렌드와 경쟁 구도 변화를 이해하는 데 참고할 수 있다."
+        },
+        {
+          "industry": "semiconductor",
+          "tier": "premium",
+          "title": "서플러스글로벌, AI 기반 수출통제 자동화 기술 특허 등록… 반도체 장비·부품 거래 안전성 강화",
+          "summary": "서플러스글로벌이 자사 반도체 장비·부품 거래 플랫폼 세미마켓에 적용된 AI 기반 수출통제 자동화 및 거래 리스크 관리 기술에 대한 국내 특허를 획득했다.",
+          "source": "뉴스와이어 - 제조설비",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1035558&sourceType=rss",
+          "event_type": "R&D/연구성과",
+          "sentiment": "긍정",
+          "why_it_matters": "반도체 장비·부품 거래 플랫폼에 AI 기반 수출통제 자동화 기술이 특허로 등록됨에 따라, 해당 분야 취업준비생은 AI와 무역 컴플라이언스가 결합된 기술 역량이 새로운 직무 역량으로 부상하고 있음을 인지할 필요가 있다."
+        },
+        {
           "industry": "embedded_iot",
           "tier": "free",
           "title": "Access Advance, 새로운 라이선스 사용권자들의 HEVC Advance 특허 풀 대거 합류 환영",
@@ -512,17 +512,6 @@
         {
           "industry": "embedded_iot",
           "tier": "free",
-          "title": "Microsoft Takes Sisvel Wi-Fi Multimode Patent Pool Licence",
-          "summary": "마이크로소프트가 Sisvel의 Wi-Fi 멀티모드 특허 풀에 라이선시로 합류하며, Wi-Fi 표준필수특허에 대한 사용 허가 계약을 체결했다.",
-          "source": "뉴스와이어 - 통신",
-          "link": "https://www.newswire.co.kr/newsRead.php?no=1037895&sourceType=rss",
-          "event_type": "파트너십/수주",
-          "sentiment": "긍정",
-          "why_it_matters": "Wi-Fi 관련 표준필수특허 라이선싱 시장에서 대형 기업들이 잇따라 계약을 맺는 흐름은, 통신 표준 및 지식재산권(IP) 분야에 관심 있는 취업준비생이나 현직자에게 특허 풀 비즈니스 모델과 SEP 라이선싱 구조를 이해하는 데 실질적인 사례가 된다."
-        },
-        {
-          "industry": "embedded_iot",
-          "tier": "premium",
           "title": "Mavenir, 도이치텔레콤 ‘올해의 파트너상’ 네트워크 혁신 부문 수상",
           "summary": "클라우드 네이티브·AI 기반 모바일 네트워크 소프트웨어 기업 Mavenir가 도이치텔레콤으로부터 네트워크 혁신 분야 올해의 파트너상을 수상하며 기술 협력 성과를 인정받았다.",
           "source": "뉴스와이어 - 통신",
@@ -596,6 +585,17 @@
           "event_type": "파트너십/수주",
           "sentiment": "긍정",
           "why_it_matters": "통신 SW 플랫폼이 공공 규제 기관에 납품되는 사례로, 관련 분야 취업을 준비 중인 사람이라면 B2G 형태의 통신 솔루션 수주 구조와 디지털 신원 인증 기술 수요를 파악하는 데 참고할 수 있다."
+        },
+        {
+          "industry": "embedded_iot",
+          "tier": "premium",
+          "title": "ICS Korea ‘Automotive Innovation Day 2026’ 참가… 10BASE-T1S 환경의 DoIP·DDS/RTPS·Zenoh-Pico 통신 시연 및 Edge AI 데이터 로거 신제품 공개",
+          "summary": "ICS Korea가 2026년 7월 AID 2026 전시회에서 차세대 차량 네트워크 표준인 10BASE-T1S 기반의 통신 솔루션 시연과 Edge AI 데이터 로거 신제품을 공개할 예정이다.",
+          "source": "뉴스와이어 - 통신",
+          "link": "https://www.newswire.co.kr/newsRead.php?no=1037457&sourceType=rss",
+          "event_type": "제품출시/기술발표",
+          "sentiment": "긍정",
+          "why_it_matters": "차량용 이더넷 및 Edge AI 기술이 주목받는 시점에서, 관련 분야 취업 준비생이나 현직자는 10BASE-T1S·DoIP·DDS 등 차세대 차량 네트워크 표준의 실제 구현 사례를 통해 기술 트렌드를 파악하는 데 참고할 수 있다."
         },
         {
           "industry": "ecommerce_platform",
