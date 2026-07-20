@@ -24,13 +24,36 @@
         </select>
       </label>
       <label>
-        상태 필터
+        승인 상태
         <select id="filter-status">
           <option value="">전체</option>
           <option value="approved">승인됨</option>
           <option value="unapproved">미승인</option>
-          <option value="invalid">industries 오류만</option>
         </select>
+      </label>
+      <label>
+        industries 오류
+        <select id="filter-invalid">
+          <option value="">전체</option>
+          <option value="yes">오류 있음</option>
+          <option value="no">오류 없음</option>
+        </select>
+      </label>
+      <label>
+        자동승인 판정
+        <select id="filter-auto">
+          <option value="">전체</option>
+          <option value="pass">규칙 통과</option>
+          <option value="fail">규칙 미통과 (검토 필요)</option>
+        </select>
+      </label>
+      <label>
+        impact_score 최소
+        <input type="number" id="filter-impact-min" min="1" max="5" placeholder="1" />
+      </label>
+      <label>
+        impact_score 최대
+        <input type="number" id="filter-impact-max" min="1" max="5" placeholder="5" />
       </label>
       <label>
         정렬
@@ -41,6 +64,18 @@
         </select>
       </label>
       <button id="refresh-btn">새로고침</button>
+      <button id="rerun-auto-approve-btn" title="config/auto_approve_rules.json 기준으로 전체 레코드를 재판정합니다. 사람이 이미 승인/반려한(manual) 레코드는 건드리지 않습니다.">자동승인 규칙 재실행</button>
+    </section>
+
+    <section class="bulk-bar">
+      <label class="select-all-label">
+        <input type="checkbox" id="select-all-checkbox" />
+        현재 필터 결과 전체 선택
+      </label>
+      <span id="selected-count">선택됨: 0건</span>
+      <button id="bulk-approve-btn">선택 항목 일괄 승인</button>
+      <button id="bulk-unapprove-btn">선택 항목 일괄 미승인</button>
+      <span id="bulk-status"></span>
     </section>
 
     <div class="layout">

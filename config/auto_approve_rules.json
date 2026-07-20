@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-07-21",
+  "notes_ko": "예외 기반 검수(review-by-exception)의 통과 기준. '완전 자동 발행 금지' 원칙을 없애는 게 아니라 사람이 봐야 할 대상을 줄이는 필터다 -- 아래 조건을 전부 통과해야 approved=true로 자동 전환되고, approval_source='auto_rule'로 기록된다. 하나라도 실패하면 approved는 false로 유지되며 실패 사유가 레코드의 auto_approve.reasons에 남아 관리자 페이지에서 사람이 그 이유만 보고 판단하면 된다. 사람이 admin 페이지에서 개별/일괄로 명시적으로 승인/반려하면 approval_source='manual'로 기록되고, 이후 규칙을 재실행해도 manual 레코드는 절대 건드리지 않는다(사람 판단을 규칙이 뒤집지 않음). 즉 approved=true가 되는 경로는 정확히 둘뿐: (1) 이 규칙 전부 통과, (2) 사람의 명시적 승인.",
+  "min_impact_score": 3,
+  "min_impact_score_reason_ko": "impact_score는 1~5 스케일(tag_articles.py 프롬프트 참고). 3(중간값)을 기준선으로 잡았다 -- 2026-07-21 시점 132건 분포는 1점 8건/2점 51건/3점 57건/4점 14건/5점 2건이라 3 이상이면 절반가량(73건)이 이 조건은 통과한다. 1~2점(routine/저영향 소식)은 사람이 굳이 안 봐도 크게 위험하지는 않지만, 애초에 뉴스레터에 실을 가치가 낮은 경우가 많아 사람이 '이걸 실을지 말지' 편집 판단을 하는 게 맞다고 보고 문턱을 뒀다. 4로 올리면 통과율이 16/132로 너무 낮아져 '예외 기반'의 취지(사람이 볼 양을 줄이는 것)가 무색해진다고 판단해 3을 기본값으로 선택했다. 필요시 이 값만 올리면 더 보수적으로 동작한다.",
+  "require_valid_industries": true,
+  "require_valid_industries_reason_ko": "2026-07-20 아침에 태깅 결과에 '로봇' 같은 한글 라벨이 config/industries.json의 canonical id 대신 들어가는 버그가 있었고, 이게 group_by_industry()에서 조용히 누락되는 사고로 이어졌다. industries가 비어있거나 canonical id가 아닌 값이 하나라도 섞여 있으면 반드시 사람 확인을 거치도록 강제한다 -- 이 조건은 완화하지 않는 게 좋다.",
+  "disallow_controversy": true,
+  "disallow_controversy_reason_ko": "controversy_flag=true인 기사는 논쟁 소지가 있다는 뜻이므로, 요약/톤이 실제로 중립적인지 사람이 반드시 확인해야 한다. 예외 없음.",
+  "require_sentiment": true,
+  "require_summary": true,
+  "require_why_it_matters": true,
+  "require_core_fields_reason_ko": "sentiment/summary/why_it_matters 중 하나라도 비어있으면 태깅이 불완전하게 끝난 레코드라는 뜻이라 자동승인 대상에서 제외한다. (impact_score는 위에서 별도 문턱값으로 다룬다.)"
+}

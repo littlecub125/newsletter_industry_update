@@ -51,9 +51,15 @@ header .hint { margin: 0; font-size: 13px; color: var(--muted); }
   gap: 4px;
 }
 
-.toolbar select, .toolbar button {
+.toolbar select, .toolbar input, .toolbar button {
   font-size: 13px;
   padding: 6px 8px;
+}
+
+.toolbar input[type="number"] {
+  width: 60px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
 }
 
 .toolbar button {
@@ -64,9 +70,11 @@ header .hint { margin: 0; font-size: 13px; color: var(--muted); }
   border-radius: 4px;
 }
 
+#rerun-auto-approve-btn { background: #4338ca; }
+
 .layout {
   display: flex;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 175px);
 }
 
 .list-panel {
@@ -83,13 +91,27 @@ header .hint { margin: 0; font-size: 13px; color: var(--muted); }
 }
 
 .article-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   padding: 10px 14px;
   border-bottom: 1px solid var(--border);
-  cursor: pointer;
 }
 
 .article-item:hover { background: #f0f4ff; }
 .article-item.selected { background: #e0ebff; }
+
+.item-select {
+  padding-top: 2px;
+}
+
+.item-select input { width: 15px; height: 15px; cursor: pointer; }
+
+.item-body {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
 
 .article-item .title {
   font-size: 13px;
@@ -116,6 +138,60 @@ header .hint { margin: 0; font-size: 13px; color: var(--muted); }
 .badge.approved { background: #dcfce7; color: var(--ok); }
 .badge.unapproved { background: #f1f5f9; color: var(--muted); }
 .badge.invalid { background: #fee2e2; color: var(--danger); }
+.badge.source { background: #e0e7ff; color: #4338ca; }
+.badge.fail {
+  background: #fef3c7;
+  color: #92400e;
+  max-width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bulk-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 24px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.select-all-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.select-all-label input { width: 16px; height: 16px; }
+
+#selected-count { color: var(--muted); }
+
+.bulk-bar button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  background: var(--accent);
+  color: white;
+}
+
+#bulk-unapprove-btn { background: var(--danger); }
+
+#bulk-status { color: var(--muted); }
+
+.readonly-block.auto-pass { border-color: var(--ok); background: #f0fdf4; }
+.readonly-block.auto-fail { border-color: var(--danger); background: #fef2f2; }
+
+.reason-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: var(--danger);
+}
 
 .editor-panel {
   flex: 1;

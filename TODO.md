@@ -4,6 +4,32 @@
 시작할 때 전체 대화 기록을 다시 읽는 대신 이 파일부터 확인하면 된다. 작업이 끝나거나 새
 블로커가 생기면 이 파일을 그때그때 갱신한다.
 
+## 최근 완료 (2026-07-21 — 일괄 승인 UI + 규칙 기반 자동승인)
+
+129건을 한 건씩 클릭해서 검수하는 게 비현실적이라는 문제 제기(운영자)에 대응. "완전
+자동발행(검수 자체 없앰)"은 명시적으로 배제하고, 아래 두 가지만 구현.
+
+- [x] **일괄 승인 UI** — `admin/`에 필터(산업/impact_score 최소·최대/승인상태/industries
+  오류 여부/자동승인 판정) + 체크박스 다중선택(현재 필터 결과 전체선택 포함) + 일괄
+  승인·미승인 버튼 추가. `PUT /api/articles/bulk` (`pipeline/admin_server.py`)가
+  `{indices, approved}`를 받아 처리.
+- [x] **규칙 기반 자동승인(예외 기반 검수)** — `pipeline/auto_approve.py` +
+  `config/auto_approve_rules.json`. 기준: industries 전부 canonical id(아침에 있었던
+  한글 라벨 누출 버그 재발 방지) / impact_score >= 3(1~5 스케일 중간값, 근거는 config
+  파일의 `*_reason_ko` 필드) / controversy_flag=false / sentiment·summary·why_it_matters
+  모두 존재. `run_pipeline.py`가 태깅 직후 자동 적용(레코드가 `approved`/`approval_source`/
+  `auto_approve`를 갖고 `tagged_articles.jsonl`에 쓰임), admin 페이지의 "자동승인 규칙
+  재실행" 버튼(`POST /api/auto-approve/rerun`)으로 기존 레코드에도 재적용 가능.
+  **`approved=true`가 되는 경로는 정확히 둘 — 규칙 통과(`approval_source="auto_rule"`)
+  또는 사람의 명시적 승인(`approval_source="manual"`, 개별 저장이든 위 일괄 승인이든).**
+  재실행은 `approval_source="manual"`인 레코드를 절대 건드리지 않아 사람 판단이 규칙에
+  덮어씌워지지 않음(bulk API로 3건을 manual 처리 후 재실행 → 변경 0건으로 실증 확인).
+  규칙을 통과하지 못한 레코드는 admin 페이지에 실패 사유(예: "impact_score 2 < 임계값 3")가
+  그대로 노출됨.
+  - 기존 132건(2026-07-21 시점, 아침 기록의 129건에서 스케줄러가 더 수집)에 실제 적용:
+    **73건 자동승인 통과 / 59건 검토 필요**로 분리됨 (`data/tagged_articles.jsonl.bak_before_auto_approve`
+    임시 백업 후 적용, 확인 후 백업 삭제).
+
 ## 최근 완료 (2026-07-20, 추가분 — 관리자 페이지 + 스케줄러)
 
 - [x] **관리자 페이지(로컬 전용) 구현** — "장기 구상: 에이전트 분리 아키텍처" 원안

@@ -47,6 +47,12 @@ def load_pipeline_limits() -> dict:
     return _load_json("pipeline_limits.json")
 
 
+def load_auto_approve_rules() -> dict:
+    """규칙 기반 자동승인(예외 기반 검수) 통과 기준. pipeline/auto_approve.py가 사용.
+    config/auto_approve_rules.json 참고 (각 필드 옆 *_reason_ko에 근거 문서화됨)."""
+    return _load_json("auto_approve_rules.json")
+
+
 def default_week_label(date: datetime = None) -> str:
     """오늘(또는 주어진 날짜) 기준 "YYYY년 M월 N주" 라벨을 계산한다. N = ceil(day/7).
     --week를 매번 사람이 손으로 계산해서 넘겨야 했던 게 실수(날짜 지난 라벨 그대로

@@ -75,18 +75,20 @@ dev_claude/
 │   ├── build_news.py       # 태깅 결과 → news.json 변환 (free/premium만, 웹 노출용)
 │   ├── build_newsletter.py # 태깅 결과 → 이메일 초안 HTML (4개 티어 + 회사 섹션, 발송용, approved만 포함)
 │   ├── lookup_company.py   # 회사명으로 태깅 기사 검색 CLI (VIP 수동 조립 보조)
-│   └── admin_server.py     # 로컬 관리자 페이지 서버 (admin/ 서빙 + tagged_articles.jsonl 편집 API)
+│   ├── admin_server.py     # 로컬 관리자 페이지 서버 (admin/ 서빙 + tagged_articles.jsonl 편집/일괄승인 API)
+│   └── auto_approve.py     # 규칙 기반 자동승인(예외 기반 검수) 판정 로직
 ├── config/              # 설정 파일 (여기만 고치면 확장됨)
 │   ├── industries.json  # 산업 대분류 10개 + 중분류
 │   ├── event_types.json # 이벤트 유형, 감성, scope 고정 리스트
 │   ├── sources.json     # 산업별 RSS 소스 매핑
 │   ├── tiers.json       # 티어별 한도 (산업 수/회사 수/뉴스 개수/광고/웹 노출 방식)
 │   ├── company_aliases.json  # 회사명 별칭 사전 (표기 불일치 보완, lookup_company.py가 사용)
-│   └── pipeline_limits.json  # 회차당 최대 태깅 건수 (API 비용 상한, 무인 스케줄러 가드)
+│   ├── pipeline_limits.json  # 회차당 최대 태깅 건수 (API 비용 상한, 무인 스케줄러 가드)
+│   └── auto_approve_rules.json  # 자동승인 통과 기준(impact_score 문턱 등) + 각 기준의 근거(*_reason_ko)
 └── data/                # 실행 시 자동 생성 (gitignore 대상)
     ├── processed_urls.json      # 중복 방지용 처리 완료 URL
     ├── newswire_daily_counts.json  # 뉴스와이어 소스별 하루 5건 캡 카운터 (날짜 바뀌면 초기화)
-    ├── tagged_articles.jsonl    # 태깅 결과 누적 (approved 필드 포함 -- admin/ 페이지가 관리)
+    ├── tagged_articles.jsonl    # 태깅 결과 누적 (approved/approval_source/auto_approve 필드 포함)
     └── newsletter_drafts/       # build_newsletter.py가 생성하는 이메일 초안
 ```
 
@@ -130,10 +132,17 @@ RSS 소스 (config/sources.json)
 | reasoning | 태깅 근거 한 줄 (사람이 검수할 때 사용) |
 
 위 필드는 전부 `tag_articles.py`가 채우는 `tagged` 객체 안에 있다. 레코드 최상위에는
-`approved`(bool) 필드가 별도로 있다 -- `tag_article()`은 이 필드를 채우지 않고, 태깅
-직후엔 존재하지 않거나 `false`다. `admin/` 관리자 페이지에서 사람이 체크해야 `true`가
-되고, `build_news.py`/`build_newsletter.py`는 `approved: true`인 레코드만 읽는다
-(`config_loader.load_tagged_articles(only_approved=True)`).
+`approved`(bool) 필드가 별도로 있다 -- `tag_article()` 자체는 이 필드를 채우지 않지만,
+`run_pipeline.py`가 태깅 직후 `pipeline/auto_approve.py`의 규칙(자세한 근거는
+`config/auto_approve_rules.json`)을 적용해서 `approved`/`approval_source`/`auto_approve`
+(판정 결과 + 실패 사유)를 채운 채로 저장한다. `build_news.py`/`build_newsletter.py`는
+여전히 `approved: true`인 레코드만 읽는다(`config_loader.load_tagged_articles(only_approved=True)`).
+`approved`가 `true`가 되는 경로는 정확히 둘뿐이다 -- (1) 위 규칙을 전부 통과
+(`approval_source="auto_rule"`), (2) `admin/` 관리자 페이지에서 사람이 개별 저장 또는
+일괄 승인(bulk API)으로 명시적으로 체크(`approval_source="manual"`). 규칙 재실행
+(`POST /api/auto-approve/rerun`, admin 페이지의 "자동승인 규칙 재실행" 버튼)은
+`approval_source="manual"`인 레코드는 절대 건드리지 않는다 -- "완전 자동 발행 금지"
+원칙은 검수를 없애는 게 아니라 사람이 봐야 할 대상을 줄이는 방식으로 지킨다.
 
 ### 아직 구현되지 않은 태그
 - `cluster_id`: 같은 사건을 다룬 여러 매체 기사를 하나로 묶기 (중복 게재 방지)
@@ -265,7 +274,8 @@ python pipeline/admin_server.py
 # 브라우저에서 http://127.0.0.1:8787 접속, Ctrl+C로 종료
 ```
 
-- 산업/승인 상태로 필터링, impact_score/수집순 정렬
+- 산업/승인 상태/industries 오류 여부/자동승인 판정/impact_score 범위로 필터링,
+  impact_score/수집순 정렬
 - 기사별로 `summary`/`why_it_matters`/`industries`를 직접 편집 가능
 - `industries`에 `config/industries.json`에 없는 값(예: 한글 표시 라벨이 실수로 들어간
   경우 — `group_by_industry()`에서 조용히 누락되는 버그, 2026-07-20 발견)이 있으면
@@ -273,6 +283,17 @@ python pipeline/admin_server.py
 - **승인(approved) 체크박스** — 이걸 체크해야 `build_news.py`/`build_newsletter.py`
   산출물에 포함된다. 체크 안 하면 기본값은 미승인(false)이라 자동으로 제외됨(완전 자동
   발행 금지 원칙의 실제 집행 지점)
+- **필터 + 체크박스 다중선택 + 일괄 승인/미승인** (2026-07-21 추가) — 필터로 좁힌 뒤
+  "현재 필터 결과 전체 선택" 체크 → "선택 항목 일괄 승인/미승인" 버튼. 129건을 한
+  건씩 클릭하는 대신 "robot, impact_score>=4"처럼 좁혀서 한 번에 처리할 수 있다.
+- **규칙 기반 자동승인(예외 기반 검수)** — `config/auto_approve_rules.json` 기준을
+  통과한 기사는 태깅 직후 `run_pipeline.py`가 자동으로 승인 처리한다(검수를 없애는
+  게 아니라 사람이 볼 대상을 줄이는 방식, `pipeline/auto_approve.py` 참고). 통과하지
+  못한 기사는 화면에 실패 사유(예: "impact_score 2 < 임계값 3")가 그대로 표시된다.
+  "자동승인 규칙 재실행" 버튼으로 기존 레코드에도 다시 적용할 수 있다(규칙 파일을
+  고쳤거나, industries 오분류 버그를 고친 뒤 재판정하고 싶을 때). 사람이 이미 개별/
+  일괄로 명시적으로 승인·반려한 레코드(`approval_source="manual"`)는 재실행이 절대
+  건드리지 않는다.
 
 ### 스케줄러 (수집+태깅만 자동)
 
