@@ -1,6 +1,6 @@
 # DESIGN_GUIDE.md (비주얼 디자인 토큰 · dev 작업공간 소유)
 
-이 문서는 웹사이트(`web/`)의 **비주얼 디자인 토큰** 기준이다. `newsletter_claude`(dev
+이 문서는 웹사이트(`web/`)의 **비주얼 디자인 토큰** 기준이다. `dev_claude`(dev
 작업공간)가 소유하며, 새 페이지/컴포넌트를 추가할 때 먼저 확인한다.
 
 - 카피 톤/말투 기준은 이 문서가 아니라 `../marketing_claude/STYLE_GUIDE.md`(marketing

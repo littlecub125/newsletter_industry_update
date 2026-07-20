@@ -4,7 +4,7 @@
 
 ## 작업공간 구조
 
-이 폴더(`newsletter_claude/`)는 **dev 전용 작업공간**이다 — 코드/파이프라인/웹사이트/
+이 폴더(`dev_claude/`)는 **dev 전용 작업공간**이다 — 코드/파이프라인/웹사이트/
 배포만 다루고, 마케팅·사업 전략 자료는 형제 폴더인 `../marketing_claude/`,
 `../business_claude/`에 있다. 세 작업공간이 어떻게 협업하는지는 프로젝트 루트의
 [`../CLAUDE.md`](../CLAUDE.md)를 참고할 것. 이 폴더는 독립된 **public** GitHub 저장소
@@ -51,7 +51,7 @@ B: 배포 → C: 파이프라인 개선 → D: 나중에)별로 정리돼 있으
 ## 폴더 구조
 
 ```
-newsletter-project/
+dev_claude/
 ├── web/                 # 정적 웹사이트 (그대로 호스팅 가능)
 │   ├── index.html       # 홈 (구독 랜딩)
 │   ├── news.html        # 뉴스 (산업 필터 + 최신/아카이브 탭)
