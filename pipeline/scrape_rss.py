@@ -18,6 +18,7 @@ from email.utils import parsedate_to_datetime
 from config_loader import DATA_DIR, load_sources
 
 STATE_FILE = os.path.join(DATA_DIR, "processed_urls.json")
+DAILY_CAP_STATE_FILE = os.path.join(DATA_DIR, "newswire_daily_counts.json")
 
 CONTENT_NS = {"content": "http://purl.org/rss/1.0/modules/content/"}
 MIN_CONTENT_LENGTH = 30   # 이보다 짧은 본문은 태깅 API 비용 절약을 위해 스킵
@@ -52,6 +53,27 @@ def load_processed_urls() -> set:
 def save_processed_urls(urls: set):
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(list(urls), f, ensure_ascii=False)
+
+
+def load_daily_counts() -> dict:
+    """소스별 오늘 수집 건수를 읽는다. 날짜가 바뀌었으면 자동으로 초기화한다.
+
+    저장 형식: {"date": "YYYY-MM-DD", "counts": {"<source url>": <int>}}
+    processed_urls.json과 같은 패턴(data/ 아래, .gitignore 대상)을 따른다.
+    """
+    today = datetime.now().strftime("%Y-%m-%d")
+    if not os.path.exists(DAILY_CAP_STATE_FILE):
+        return {"date": today, "counts": {}}
+    with open(DAILY_CAP_STATE_FILE, "r", encoding="utf-8") as f:
+        state = json.load(f)
+    if state.get("date") != today:
+        return {"date": today, "counts": {}}
+    return state
+
+
+def save_daily_counts(state: dict):
+    with open(DAILY_CAP_STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump(state, f, ensure_ascii=False)
 
 
 def fetch_rss(url: str, timeout: int = 10, max_retries: int = MAX_RETRIES) -> str:
@@ -111,10 +133,19 @@ def parse_rss(xml_text: str) -> list:
     return articles
 
 
-def collect_articles_for_industry(industry_id: str, sources_config: dict) -> list:
-    """특정 산업 id에 매핑된 모든 RSS 소스를 순회하며 기사 수집"""
+def collect_articles_for_industry(industry_id: str, sources_config: dict, daily_counts: dict = None) -> list:
+    """특정 산업 id에 매핑된 모든 RSS 소스를 순회하며 기사 수집
+
+    daily_counts가 주어지면 소스별 `daily_cap`(예: 뉴스와이어 "하루 5건" 한도, 별도 허락
+    미획득 상태 - TODO.md "법적/저작권 확인 필요" 참고)을 강제한다. 같은 소스(url 기준)가
+    여러 산업에 매핑된 경우(예: "뉴스와이어 - 소프트웨어"가 embedded_iot/ai_software 둘 다에
+    쓰임)에도 누적 건수가 합산되도록 url을 키로 쓴다. daily_counts는 호출자가 이어서 쓸 수
+    있도록 그 자리에서 갱신한다(in-place).
+    """
     all_articles = []
     industry_sources = sources_config["sources"].get(industry_id, [])
+    if daily_counts is None:
+        daily_counts = {}
 
     for source in industry_sources:
         if source.get("type") != "rss":
@@ -124,9 +155,26 @@ def collect_articles_for_industry(industry_id: str, sources_config: dict) -> lis
             print(f"[SKIP] {source['name']}: 재배포 허가 미확인 (redistribution_allowed=false), 수집 제외")
             continue
 
+        daily_cap = source.get("daily_cap")
+        source_key = source["url"]
+        used_today = daily_counts.get(source_key, 0)
+        if daily_cap is not None and used_today >= daily_cap:
+            print(f"[SKIP] {source['name']}: 오늘 일일 한도({daily_cap}건) 도달, 추가 수집 건너뜀 "
+                  f"(뉴스와이어 대량 이용 별도 허락 미획득 - TODO.md 참고)")
+            continue
+
         try:
             xml_text = fetch_rss(source["url"])
             articles = parse_rss(xml_text)
+
+            if daily_cap is not None:
+                remaining = daily_cap - used_today
+                if len(articles) > remaining:
+                    print(f"[CAP] {source['name']}: 수집분 {len(articles)}건이 일일 잔여 한도"
+                          f"({remaining}건)를 초과해 {remaining}건만 사용, 나머지 건너뜀")
+                    articles = articles[:remaining]
+                daily_counts[source_key] = used_today + len(articles)
+
             for a in articles:
                 a["source"] = source["name"]
                 a["industry_hint"] = industry_id  # 어느 산업 소스에서 왔는지 힌트로 저장 (최종 판단은 태깅 단계에서)
@@ -148,16 +196,18 @@ def collect_all(sources_path: str = None) -> list:
             sources_config = json.load(f)
 
     processed = load_processed_urls()
+    daily_state = load_daily_counts()
     new_articles = []
 
     for industry_id in sources_config["sources"].keys():
-        articles = collect_articles_for_industry(industry_id, sources_config)
+        articles = collect_articles_for_industry(industry_id, sources_config, daily_state["counts"])
         for a in articles:
             if a["link"] not in processed:
                 new_articles.append(a)
                 processed.add(a["link"])
 
     save_processed_urls(processed)
+    save_daily_counts(daily_state)
     print(f"\n총 신규 기사: {len(new_articles)}건 (중복 제외)")
     return new_articles
 
